@@ -136,8 +136,8 @@ export default function Home() {
                 Sitios web modernos
               </h3>
               <p className="py-2 md:text-xl dark:text-white">
-                Creación de diseños elegantes adaptados a sus necesidades
-                siguiendo la teoría del diseño.
+                Desarrollo de aplicaciones moviles, sitios web y aplicativos web
+                optimizados para una navegacion fluida
               </p>
               <h4 className="py-4 text-blue-600 dark:text-white">
                 Lenguajes que utilizo en el desarrollo
@@ -157,11 +157,11 @@ export default function Home() {
                 Videos atractivos
               </h3>
               <p className="py-2 md:text-xl dark:text-white">
-                Creación de diseños elegantes adaptados a sus necesidades
-                siguiendo la teoría del diseño.
+                Creacion de productos audiovisuales de calidad para todo tipo de
+                ocaciones.
               </p>
               <h4 className="py-4 text-blue-600 dark:text-white">
-                Herramientas de edicion que utilizo
+                Herramientas de edición que utilizo
               </h4>
               <p className="text-gray-800 py-1 dark:text-white">
                 Davinci Resolve
