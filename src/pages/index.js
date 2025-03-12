@@ -12,6 +12,8 @@ import santed from "../../public/santed.png";
 import dsegunda from "../../public/dsegunda.png";
 import hoobank from "../../public/hoobank.png";
 import impuestosperu from "../../public/impuestosperu.png";
+import gruporedsalud from "../../public/gruporedsaludss.png"
+import cajatrujillo from "../../public/cajatrujilloss.png";
 import { useState } from "react";
 
 export default function Home() {
@@ -144,7 +146,7 @@ export default function Home() {
               </h4>
               <p className="text-gray-800 py-1 dark:text-white">Angular</p>
               <p className="text-gray-800 py-1 dark:text-white">ReactJs</p>
-              <p className="text-gray-800 py-1 dark:text-white">Next.js</p>
+              <p className="text-gray-800 py-1 dark:text-white">Wordpress</p>
             </div>
             <div className="text-center shadow-lg p-10 rounded-xl my-10 dark:bg-gradient-to-b from-blue-500">
               <Image
@@ -189,6 +191,36 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap">
+            <div className="basis-1/3 flex-1">
+              <a
+                href="https://gruporedsalud.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={gruporedsalud}
+                  className="rounded-lg object-cover"
+                  width={"100%"}
+                  height={"100%"}
+                  layout="responsive"
+                />
+              </a>
+            </div>
+            <div className="basis-1/3 flex-1">
+              <a
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={cajatrujillo}
+                  className="rounded-lg object-cover"
+                  width={"100%"}
+                  height={"100%"}
+                  layout="responsive"
+                />
+              </a>
+            </div>
             <div className="basis-1/3 flex-1">
               <a
                 href="https://creativehome.pe/"
