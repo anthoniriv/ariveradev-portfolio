@@ -13,7 +13,16 @@ module.exports = {
     extend: {
       fontFamily: {
         burtons: "burtons",
-      }
+      },
+      colors: {
+        primary: '#6D28D9',
+        secondary: '#2563EB',
+        accent: '#0EA5E9',
+        bg: '#0B1020',
+        surface: '#111A33',
+        text: '#E8EEFF',
+        muted: '#A9B4D0',
+      },
     },
   },
   plugins: [],
