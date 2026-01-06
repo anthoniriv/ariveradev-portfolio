@@ -22,7 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="min-h-screen bg-bg">
+      <div className="min-h-screen bg-background">
         <Navbar />
         <main>
           <Hero />

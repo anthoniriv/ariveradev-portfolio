@@ -5,38 +5,38 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-surface">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <a href="#" className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Onilabs
             </a>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#servicios" className="text-text hover:text-accent transition-colors">
+            <a href="#servicios" className="text-text-secondary hover:text-primary transition-colors">
               Servicios
             </a>
-            <a href="#proyectos" className="text-text hover:text-accent transition-colors">
+            <a href="#proyectos" className="text-text-secondary hover:text-primary transition-colors">
               Proyectos
             </a>
-            <a href="#portafolio" className="text-text hover:text-accent transition-colors">
+            <a href="#portafolio" className="text-text-secondary hover:text-primary transition-colors">
               Portafolio
             </a>
-            <a href="#proceso" className="text-text hover:text-accent transition-colors">
+            <a href="#proceso" className="text-text-secondary hover:text-primary transition-colors">
               Proceso
             </a>
-            <a href="#equipo" className="text-text hover:text-accent transition-colors">
+            <a href="#equipo" className="text-text-secondary hover:text-primary transition-colors">
               Equipo
             </a>
-            <a href="#contacto" className="text-text hover:text-accent transition-colors">
+            <a href="#contacto" className="text-text-secondary hover:text-primary transition-colors">
               Contacto
             </a>
             <a
               href="#contacto"
-              className="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-primary/50 transition-all"
+              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark hover:shadow-md transition-all"
             >
               Agenda una llamada
             </a>
@@ -46,7 +46,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-text hover:text-accent transition-colors"
+              className="text-text-primary hover:text-primary transition-colors"
               aria-label="Toggle menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,27 +63,27 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden py-4 space-y-4">
-            <a href="#servicios" className="block text-text hover:text-accent transition-colors" onClick={() => setIsMenuOpen(false)}>
+            <a href="#servicios" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
               Servicios
             </a>
-            <a href="#proyectos" className="block text-text hover:text-accent transition-colors" onClick={() => setIsMenuOpen(false)}>
+            <a href="#proyectos" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
               Proyectos
             </a>
-            <a href="#portafolio" className="block text-text hover:text-accent transition-colors" onClick={() => setIsMenuOpen(false)}>
+            <a href="#portafolio" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
               Portafolio
             </a>
-            <a href="#proceso" className="block text-text hover:text-accent transition-colors" onClick={() => setIsMenuOpen(false)}>
+            <a href="#proceso" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
               Proceso
             </a>
-            <a href="#equipo" className="block text-text hover:text-accent transition-colors" onClick={() => setIsMenuOpen(false)}>
+            <a href="#equipo" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
               Equipo
             </a>
-            <a href="#contacto" className="block text-text hover:text-accent transition-colors" onClick={() => setIsMenuOpen(false)}>
+            <a href="#contacto" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
               Contacto
             </a>
             <a
               href="#contacto"
-              className="block bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-lg text-center hover:shadow-lg hover:shadow-primary/50 transition-all"
+              className="block bg-primary text-white px-6 py-2 rounded-lg text-center hover:bg-primary-dark hover:shadow-md transition-all"
               onClick={() => setIsMenuOpen(false)}
             >
               Agenda una llamada

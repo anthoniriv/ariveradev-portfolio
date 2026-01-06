@@ -6,43 +6,43 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-surface border-t border-surface py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-surface border-t border-border py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
               Onilabs
             </h3>
-            <p className="text-muted text-sm">
+            <p className="text-text-secondary text-sm">
               Laboratorio de programación especializado en desarrollo web, móvil, microservicios y ecommerce.
             </p>
           </div>
 
           <div>
-            <h4 className="text-text font-semibold mb-4">Enlaces</h4>
+            <h4 className="text-text-primary font-semibold mb-4">Enlaces</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#servicios" className="text-muted hover:text-accent transition-colors text-sm">
+                <a href="#servicios" className="text-text-secondary hover:text-primary transition-colors text-sm">
                   Servicios
                 </a>
               </li>
               <li>
-                <a href="#proyectos" className="text-muted hover:text-accent transition-colors text-sm">
+                <a href="#proyectos" className="text-text-secondary hover:text-primary transition-colors text-sm">
                   Proyectos
                 </a>
               </li>
               <li>
-                <a href="#proceso" className="text-muted hover:text-accent transition-colors text-sm">
+                <a href="#proceso" className="text-text-secondary hover:text-primary transition-colors text-sm">
                   Proceso
                 </a>
               </li>
               <li>
-                <a href="#equipo" className="text-muted hover:text-accent transition-colors text-sm">
+                <a href="#equipo" className="text-text-secondary hover:text-primary transition-colors text-sm">
                   Equipo
                 </a>
               </li>
               <li>
-                <a href="#contacto" className="text-muted hover:text-accent transition-colors text-sm">
+                <a href="#contacto" className="text-text-secondary hover:text-primary transition-colors text-sm">
                   Contacto
                 </a>
               </li>
@@ -50,13 +50,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-text font-semibold mb-4">Síguenos</h4>
+            <h4 className="text-text-primary font-semibold mb-4">Síguenos</h4>
             <div className="flex space-x-4">
               <a
                 href={links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted hover:text-accent transition-colors"
+                className="text-text-secondary hover:text-primary transition-colors"
                 aria-label="LinkedIn"
               >
                 <AiFillLinkedin className="text-2xl" />
@@ -65,7 +65,7 @@ export default function Footer() {
                 href={links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted hover:text-accent transition-colors"
+                className="text-text-secondary hover:text-primary transition-colors"
                 aria-label="GitHub"
               >
                 <AiFillGithub className="text-2xl" />
@@ -74,7 +74,7 @@ export default function Footer() {
                 href={links.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted hover:text-accent transition-colors"
+                className="text-text-secondary hover:text-primary transition-colors"
                 aria-label="WhatsApp"
               >
                 <FaWhatsapp className="text-2xl" />
@@ -83,8 +83,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-surface pt-8 text-center">
-          <p className="text-muted text-sm">
+        <div className="border-t border-border pt-8 text-center">
+          <p className="text-text-secondary text-sm">
             © {currentYear} Onilabs. Todos los derechos reservados.
           </p>
         </div>

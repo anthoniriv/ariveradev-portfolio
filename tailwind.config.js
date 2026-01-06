@@ -15,13 +15,32 @@ module.exports = {
         burtons: "burtons",
       },
       colors: {
-        primary: '#6D28D9',
-        secondary: '#2563EB',
+        // Base colors
+        background: '#FFFFFF',
+        surface: '#F8FAFC',
+        'surface-alt': '#F1F5F9',
+        
+        // Text colors
+        'text-primary': '#0F172A',
+        'text-secondary': '#334155',
+        'text-muted': '#64748B',
+        
+        // Brand blues
+        primary: '#2563EB',
+        'primary-soft': '#DBEAFE',
+        'primary-dark': '#1E40AF',
+        
+        // Accents
         accent: '#0EA5E9',
-        bg: '#0B1020',
-        surface: '#111A33',
-        text: '#E8EEFF',
-        muted: '#A9B4D0',
+        'accent-soft': '#E0F2FE',
+        
+        // States
+        success: '#16A34A',
+        warning: '#F59E0B',
+        error: '#DC2626',
+        
+        // Borders
+        border: '#E2E8F0',
       },
     },
   },

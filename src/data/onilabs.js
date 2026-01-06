@@ -98,14 +98,14 @@ export const equipo = [
   },
   {
     id: 2,
-    nombre: "Ahksel",
+    nombre: "Akhsel",
     rol: "Developer",
     bio: "Especialista en desarrollo full-stack y arquitectura de sistemas escalables con experiencia en tecnologías modernas.",
     iniciales: "A"
   },
   {
     id: 3,
-    nombre: "Mauro",
+    nombre: "Fox",
     rol: "Developer",
     bio: "Desarrollador experto en aplicaciones móviles y APIs, con enfoque en performance y experiencia de usuario.",
     iniciales: "M"
