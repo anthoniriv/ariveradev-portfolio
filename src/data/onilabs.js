@@ -4,42 +4,42 @@ export const servicios = [
     titulo: "Desarrollo Web",
     descripcion: "Landing pages, sitios corporativos, dashboards y aplicaciones SaaS con tecnologías modernas y escalables.",
     icono: "🌐",
-    tecnologias: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+   
   },
   {
     id: 2,
     titulo: "Aplicaciones Móviles",
     descripcion: "Apps nativas y multiplataforma para Android e iOS con React Native e Ionic.",
     icono: "📱",
-    tecnologias: ["React Native", "Ionic", "Flutter", "iOS/Android"]
+    
   },
   {
     id: 3,
     titulo: "Microservicios & Integraciones",
     descripcion: "APIs RESTful, integraciones con CRMs, sistemas de pagos, colas de mensajería y webhooks.",
     icono: "🔌",
-    tecnologias: ["Node.js", "NestJS", "Express", "PostgreSQL", "MongoDB"]
+    
   },
   {
     id: 4,
-    titulo: "Ecommerce WordPress/WooCommerce",
+    titulo: "Ecommerce/WooCommerce",
     descripcion: "Tiendas online optimizadas, plugins personalizados, integración de pagos y gestión de inventario.",
     icono: "🛒",
-    tecnologias: ["WordPress", "WooCommerce", "PHP", "MySQL"]
+    
   },
   {
     id: 5,
     titulo: "Arquitectura Escalable",
     descripcion: "Diseño de sistemas robustos, cloud deployment, CI/CD y optimización de performance.",
     icono: "⚡",
-    tecnologias: ["AWS", "Docker", "Kubernetes", "CI/CD", "Microservicios"]
+    
   },
   {
     id: 6,
     titulo: "Mantenimiento & Evolución",
     descripcion: "Soporte continuo, mejoras incrementales, observabilidad y monitoreo de aplicaciones.",
     icono: "🔧",
-    tecnologias: ["Monitoring", "Logging", "Testing", "Refactoring"]
+    
   }
 ];
 
@@ -91,44 +91,39 @@ export const proyectosEjemplo = [
 export const equipo = [
   {
     id: 1,
-    nombre: "Ender",
+    nombre: "ENDER",
     rol: "CEO",
     bio: "Lidera la visión estratégica y las relaciones con clientes, enfocado en entregar soluciones que generen valor real.",
     iniciales: "E"
   },
   {
     id: 2,
-    nombre: "Akhsel",
+    nombre: "AKHSEL",
     rol: "Developer",
     bio: "Especialista en desarrollo full-stack y arquitectura de sistemas escalables con experiencia en tecnologías modernas.",
     iniciales: "A"
   },
   {
     id: 3,
-    nombre: "Fox",
+    nombre: "L1NTCH",
     rol: "Developer",
     bio: "Desarrollador experto en aplicaciones móviles y APIs, con enfoque en performance y experiencia de usuario.",
     iniciales: "M"
   },
   {
     id: 4,
-    nombre: "Ghost",
+    nombre: "GHOST",
     rol: "Developer",
     bio: "Desarrollador especializado en integraciones complejas, microservicios y optimización de sistemas existentes.",
     iniciales: "G"
   }
 ];
 
-export const proceso = [
+export const procesoi = [
   {
     id: 1,
     paso: "Descubrimiento",
     descripcion: "Analizamos tus necesidades, objetivos y contexto del negocio para definir el alcance del proyecto."
-  },
-  {
-    id: 2,
-    paso: "Propuesta",
-    descripcion: "Presentamos una propuesta técnica detallada con tiempos, tecnologías y presupuesto ajustado a tus requerimientos."
   },
   {
     id: 3,
@@ -136,15 +131,23 @@ export const proceso = [
     descripcion: "Diseñamos la experiencia de usuario y arquitectura técnica que garantice escalabilidad y mantenibilidad."
   },
   {
-    id: 4,
-    paso: "Desarrollo",
-    descripcion: "Desarrollamos iterativamente con entregas incrementales, manteniendo comunicación constante y feedback continuo."
-  },
-  {
     id: 5,
     paso: "Deploy/Soporte",
     descripcion: "Desplegamos en producción y brindamos soporte continuo, monitoreo y mejoras basadas en métricas reales."
   }
+];
+
+export const procesop = [
+  {
+    id: 2,
+    paso: "Propuesta",
+    descripcion: "Presentamos una propuesta técnica detallada con tiempos, tecnologías y presupuesto ajustado a tus requerimientos."
+  },
+  {
+    id: 4,
+    paso: "Desarrollo",
+    descripcion: "Desarrollamos iterativamente con entregas incrementales, manteniendo comunicación constante y feedback continuo."
+  },
 ];
 
 export const proyectosReales = [
