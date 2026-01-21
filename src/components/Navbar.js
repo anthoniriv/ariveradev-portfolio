@@ -17,28 +17,25 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <a href="#servicios" className="text-text-secondary hover:text-primary transition-colors">
-              Servicios
+              Especialidades
             </a>
-            <a href="#proyectos" className="text-text-secondary hover:text-primary transition-colors">
-              Proyectos
-            </a>
+            {/* <a href="#proyectos" className="text-text-secondary hover:text-primary transition-colors">
+              Ejemplos
+            </a> */}
             <a href="#portafolio" className="text-text-secondary hover:text-primary transition-colors">
-              Portafolio
+              Repositorio
             </a>
             <a href="#proceso" className="text-text-secondary hover:text-primary transition-colors">
-              Proceso
+              Metodologia
             </a>
             <a href="#equipo" className="text-text-secondary hover:text-primary transition-colors">
-              Equipo
-            </a>
-            <a href="#contacto" className="text-text-secondary hover:text-primary transition-colors">
-              Contacto
+              Colaboradores
             </a>
             <a
               href="#contacto"
               className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark hover:shadow-md transition-all"
             >
-              Agenda una llamada
+              Contactanos
             </a>
           </div>
 
@@ -64,29 +61,27 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden py-4 space-y-4">
             <a href="#servicios" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
-              Servicios
+              Especialidades
             </a>
-            <a href="#proyectos" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
-              Proyectos
-            </a>
+            {/* <a href="#proyectos" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
+              Repositorio
+            </a> */}
             <a href="#portafolio" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
-              Portafolio
+              Repositorio
             </a>
             <a href="#proceso" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
-              Proceso
+              Metodologia
             </a>
             <a href="#equipo" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
-              Equipo
+              Colaboradores
             </a>
-            <a href="#contacto" className="block text-text-secondary hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
-              Contacto
-            </a>
+            
             <a
               href="#contacto"
               className="block bg-primary text-white px-6 py-2 rounded-lg text-center hover:bg-primary-dark hover:shadow-md transition-all"
               onClick={() => setIsMenuOpen(false)}
             >
-              Agenda una llamada
+              Contactanos
             </a>
           </div>
         )}

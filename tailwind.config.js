@@ -19,6 +19,7 @@ module.exports = {
         background: '#FFFFFF',
         surface: '#F8FAFC',
         'surface-alt': '#F1F5F9',
+        baseEsp: '#F9F7F2',
         
         // Text colors
         'text-primary': '#0F172A',

@@ -1,64 +1,100 @@
+"use client";
+
 import Image from "next/image";
 import { proyectosReales } from "../data/onilabs";
+import { useEffect, useRef } from "react";
 
 export default function Portfolio() {
+  const sliderRef = useRef(null);
+  const intervalRef = useRef(null);
+
+  const proyectosLoop = [...proyectosReales, ...proyectosReales];
+
+  const startAutoScroll = () => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    intervalRef.current = setInterval(() => {
+      slider.scrollLeft += 1;
+
+      if (slider.scrollLeft >= slider.scrollWidth / 2) {
+        slider.scrollLeft = 0;
+      }
+    }, 20);
+  };
+
+  const stopAutoScroll = () => {
+    clearInterval(intervalRef.current);
+  };
+
+  useEffect(() => {
+    startAutoScroll();
+    return () => stopAutoScroll();
+  }, []);
+
   return (
-    <section id="portafolio" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-text-primary">
+    <section
+      id="portafolio"
+      className="bg-background py-20 "
+    >
+      <div className="mx-auto">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-text-primary sm:text-4xl md:text-5xl">
             Portafolio
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-lg text-text-secondary">
             Proyectos reales que hemos desarrollado para nuestros clientes
           </p>
         </div>
 
-        <div className="flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap">
-          {proyectosReales.map((proyecto) => (
-            <div key={proyecto.id} className="basis-1/3 flex-1 group">
-              {proyecto.url ? (
-                <a
-                  href={proyecto.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block relative overflow-hidden rounded-lg border border-border hover:border-primary transition-all hover:shadow-md"
-                >
-                  <div className="relative w-full aspect-video">
-                    <Image
-                      src={proyecto.imagen}
-                      alt={proyecto.nombre}
-                      fill
-                      className="object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-end p-4">
-                      <div>
-                        <h3 className="text-text-primary font-semibold text-lg">{proyecto.nombre}</h3>
-                        <p className="text-text-secondary text-sm">{proyecto.descripcion}</p>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              ) : (
-                <div className="relative overflow-hidden rounded-lg border border-border shadow-sm">
-                  <div className="relative w-full aspect-video">
-                    <Image
-                      src={proyecto.imagen}
-                      alt={proyecto.nombre}
-                      fill
-                      className="object-cover rounded-lg"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent rounded-lg flex items-end p-4">
-                      <div>
-                        <h3 className="text-text-primary font-semibold text-lg">{proyecto.nombre}</h3>
-                        <p className="text-text-secondary text-sm">{proyecto.descripcion}</p>
-                      </div>
+        <div
+          ref={sliderRef}
+          onMouseEnter={stopAutoScroll}
+          onMouseLeave={startAutoScroll}
+          className="flex gap-8 overflow-x-scroll py-10 px-2 cursor-pointer"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          <style jsx>{`
+            div::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
+
+          {proyectosLoop.map((proyecto, index) => (
+            <div
+              key={index}
+              className="min-w-[280px] sm:min-w-[340px] lg:min-w-[780px]"
+            >
+              <a
+                href={proyecto.url || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block border border-border rounded-lg overflow-hidden bg-background hover:border-primary transition-all"
+              >
+                <div className="relative w-full aspect-video">
+                  <Image
+                    src={proyecto.imagen}
+                    alt={proyecto.nombre}
+                    fill
+                    className="object-cover rounded-lg"
+                    sizes="(max-width: 768px) 80vw, 400px"
+                  />
+
+                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-transparent to-transparent p-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-text-primary">
+                        {proyecto.nombre}
+                      </h3>
+                      <p className="text-sm text-text-secondary">
+                        {proyecto.descripcion}
+                      </p>
                     </div>
                   </div>
                 </div>
-              )}
+              </a>
             </div>
           ))}
         </div>
