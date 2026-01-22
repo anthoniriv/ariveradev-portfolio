@@ -38,9 +38,9 @@ export default function Portfolio() {
       className="bg-background py-20 "
     >
       <div className="mx-auto">
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center">
           <h2 className="mb-4 text-3xl font-bold text-text-primary sm:text-4xl md:text-5xl">
-            Portafolio
+            Repositorio
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-text-secondary">
             Proyectos reales que hemos desarrollado para nuestros clientes

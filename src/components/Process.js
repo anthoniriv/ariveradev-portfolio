@@ -42,6 +42,7 @@ export default function Process() {
                         esProcesoi ? "" : "text-right"
                       }`}
                     >
+                      
                       <div
                         className={`flex items-center mb-4 ${
                           esProcesoi ? "" : "justify-end"
