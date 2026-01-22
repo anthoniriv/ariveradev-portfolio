@@ -1,7 +1,6 @@
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 bg-gradient-to-b from-background to-surface">
-      {/* Background Blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-24 left-12 w-96 h-96 bg-primary-soft/50 rounded-full blur-3xl"></div>
         <div className="absolute bottom-24 right-12 w-96 h-96 bg-accent-soft/50 rounded-full blur-3xl"></div>
