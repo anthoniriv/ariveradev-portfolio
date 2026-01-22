@@ -2,7 +2,6 @@ import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
-import Projects from "../components/Projects";
 import Portfolio from "../components/Portfolio";
 import Process from "../components/Process";
 import Team from "../components/Team";
@@ -27,7 +26,6 @@ export default function Home() {
         <main>
           <Hero />
           <Services />
-          {/* <Projects /> */}
           <Portfolio />
           <Process />
           <Team />
