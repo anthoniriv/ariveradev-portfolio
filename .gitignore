@@ -30,3 +30,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Node
+package-lock.json
+
+# VS Code
+.vscode/
