@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { links } from "../data/onilabs";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-surface border-t border-border py-2 px-4 sm:px-6 lg:px-8">
+    <nav className="relative z-50 bg-surface border-t border-border py-2 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
@@ -17,45 +16,30 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#servicios"
-              className="text-text-secondary hover:text-primary transition-colors"
-            >
+            <a href="#servicios" className="text-text-secondary hover:text-primary">
               Especialidades
             </a>
-            <a
-              href="#portafolio"
-              className="text-text-secondary hover:text-primary transition-colors"
-            >
+            <a href="#portafolio" className="text-text-secondary hover:text-primary">
               Repositorio
             </a>
-            <a
-              href="#proceso"
-              className="text-text-secondary hover:text-primary transition-colors"
-            >
+            <a href="#proceso" className="text-text-secondary hover:text-primary">
               Metodologia
             </a>
-            <a
-              href="#equipo"
-              className="text-text-secondary hover:text-primary transition-colors"
-            >
+            <a href="#equipo" className="text-text-secondary hover:text-primary">
               Colaboradores
             </a>
             <a
               href="#contacto"
-              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark hover:shadow-md transition-all"
+              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark transition"
             >
               Contactanos
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-text-primary hover:text-primary transition-colors"
               aria-label="Toggle menu"
             >
               <svg
@@ -84,41 +68,39 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-4">
+          <div className="md:hidden absolute top-full left-0 w-full bg-surface shadow-lg py-4 space-y-4">
             <a
               href="#servicios"
-              className="block text-text-secondary hover:text-primary transition-colors"
+              className="block px-6 text-text-secondary hover:text-primary"
               onClick={() => setIsMenuOpen(false)}
             >
               Especialidades
             </a>
             <a
               href="#portafolio"
-              className="block text-text-secondary hover:text-primary transition-colors"
+              className="block px-6 text-text-secondary hover:text-primary"
               onClick={() => setIsMenuOpen(false)}
             >
               Repositorio
             </a>
             <a
               href="#proceso"
-              className="block text-text-secondary hover:text-primary transition-colors"
+              className="block px-6 text-text-secondary hover:text-primary"
               onClick={() => setIsMenuOpen(false)}
             >
               Metodologia
             </a>
             <a
               href="#equipo"
-              className="block text-text-secondary hover:text-primary transition-colors"
+              className="block px-6 text-text-secondary hover:text-primary"
               onClick={() => setIsMenuOpen(false)}
             >
               Colaboradores
             </a>
-
             <a
               href="#contacto"
-              className="block bg-primary text-white px-6 py-2 rounded-lg text-center hover:bg-primary-dark hover:shadow-md transition-all"
+              className="block mx-6 bg-primary text-white px-6 py-2 rounded-lg text-center hover:bg-primary-dark transition"
               onClick={() => setIsMenuOpen(false)}
             >
               Contactanos
