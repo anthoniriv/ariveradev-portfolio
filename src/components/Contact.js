@@ -30,13 +30,20 @@ export default function Contact() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    try {
+      const res = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error("Error");
+
+      setSubmitted(true);
       setFormData({
         nombre: "",
         empresa: "",
@@ -45,7 +52,11 @@ export default function Contact() {
         tipo: "",
         mensaje: "",
       });
-    }, 2500);
+
+      setTimeout(() => setSubmitted(false), 2500);
+    } catch (error) {
+      alert("No se pudo enviar el mensaje");
+    }
   };
 
   return (
@@ -73,11 +84,18 @@ export default function Contact() {
               className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10"
             >
               {[
-                { label: "Nombre", name: "nombre", type: "text", required: true },
+                {
+                  label: "Nombre",
+                  name: "nombre",
+                  type: "text",
+                  required: true,
+                },
                 { label: "Empresa o proyecto (opcional)", name: "empresa" },
               ].map((field) => (
                 <div key={field.name}>
-                  <label className="text-sm text-slate-500">{field.label}</label>
+                  <label className="text-sm text-slate-500">
+                    {field.label}
+                  </label>
                   <input
                     name={field.name}
                     value={formData[field.name]}
@@ -105,7 +123,9 @@ export default function Contact() {
                   <option value="">Selecciona una opción</option>
                   <option value="idea">Solo tengo una idea</option>
                   <option value="inicio">Quiero empezar desde cero</option>
-                  <option value="mejorar">Ya tengo algo y quiero mejorarlo</option>
+                  <option value="mejorar">
+                    Ya tengo algo y quiero mejorarlo
+                  </option>
                   <option value="activo">Mi proyecto ya funciona</option>
                 </select>
               </div>
@@ -138,9 +158,7 @@ export default function Contact() {
                   className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 />
                 {errors.correo && (
-                  <p className="text-xs text-rose-500 mt-2">
-                    {errors.correo}
-                  </p>
+                  <p className="text-xs text-rose-500 mt-2">{errors.correo}</p>
                 )}
               </div>
 
@@ -156,9 +174,7 @@ export default function Contact() {
                   className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none resize-none"
                 />
                 {errors.mensaje && (
-                  <p className="text-xs text-rose-500 mt-2">
-                    {errors.mensaje}
-                  </p>
+                  <p className="text-xs text-rose-500 mt-2">{errors.mensaje}</p>
                 )}
               </div>
 
@@ -181,8 +197,8 @@ export default function Contact() {
               </h3>
 
               <p className="text-base text-slate-600 mb-10 leading-relaxed">
-                No necesitas saber de tecnología ni tener todo claro. Te ayudamos
-                a ordenar tu idea y convertirla en algo real.
+                No necesitas saber de tecnología ni tener todo claro. Te
+                ayudamos a ordenar tu idea y convertirla en algo real.
               </p>
 
               <div className="space-y-6 text-base">
@@ -210,7 +226,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl p-8 text-sm text-slate-600">
+            <div className="border border-slate-200 rounded-2xl p-8 text-m text-slate-600">
               <p className="mb-3 font-medium text-slate-700">
                 ¿Qué pasa después?
               </p>
