@@ -28,15 +28,15 @@ export default function Footer() {
                   href="#servicios"
                   className="text-text-secondary hover:text-primary text-sm"
                 >
-                  Servicios
+                  Especialidades
                 </a>
               </li>
               <li>
                 <a
-                  href="#proyectos"
+                  href="#portafolio"
                   className="text-text-secondary hover:text-primary text-sm"
                 >
-                  Proyectos
+                  Repositorio
                 </a>
               </li>
               <li>
@@ -57,7 +57,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#contacto"
+                  href="#contactanos"
                   className="text-text-secondary hover:text-primary text-sm"
                 >
                   Contacto

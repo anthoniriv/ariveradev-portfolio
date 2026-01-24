@@ -2,7 +2,7 @@ import { procesoi, procesop } from "../data/onilabs";
 
 export default function Process() {
   const procesosOrdenados = [...procesoi, ...procesop].sort(
-    (a, b) => a.id - b.id
+    (a, b) => a.id - b.id,
   );
 
   return (
@@ -11,14 +11,12 @@ export default function Process() {
       className="relative min-h-screen py-16 px-4 sm:px-6 lg:px-8 bg-background"
     >
       <div className="max-w-7xl mx-auto">
-        {/* HEADER */}
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-text-primary">
             Nuestro Proceso de Trabajo
           </h2>
         </div>
 
-        {/* ================= MOBILE ================= */}
         <div className="lg:hidden space-y-6">
           {procesosOrdenados.map((item) => (
             <div
@@ -33,7 +31,6 @@ export default function Process() {
                 group-hover:-translate-y-1
               "
             >
-              {/* NÚMERO */}
               <div
                 className="
                   absolute -top-4 left-4
@@ -49,7 +46,6 @@ export default function Process() {
                 {item.id}
               </div>
 
-              {/* CONTENIDO */}
               <h3 className="mt-4 text-lg font-semibold text-text-primary">
                 {item.paso}
               </h3>
@@ -60,9 +56,7 @@ export default function Process() {
           ))}
         </div>
 
-        {/* ================= DESKTOP ================= */}
         <div className="hidden lg:block relative">
-          {/* LÍNEA CENTRAL */}
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary -translate-x-1/2" />
 
           <div className="space-y-0">
@@ -76,7 +70,6 @@ export default function Process() {
                     esProcesoi ? "flex-row-reverse" : "flex-row"
                   }`}
                 >
-                  {/* CARD */}
                   <div className={`flex-1 ${esProcesoi ? "pl-12" : "pr-12"}`}>
                     <div
                       className={`
@@ -93,13 +86,10 @@ export default function Process() {
                       <h3 className="text-xl font-semibold mb-2 text-text-primary">
                         {item.paso}
                       </h3>
-                      <p className="text-text-secondary">
-                        {item.descripcion}
-                      </p>
+                      <p className="text-text-secondary">{item.descripcion}</p>
                     </div>
                   </div>
 
-                  {/* NÚMERO */}
                   <div
                     className="
                       w-16 h-16 rounded-full

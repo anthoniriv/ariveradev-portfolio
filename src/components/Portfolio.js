@@ -7,13 +7,19 @@ import { useEffect, useRef } from "react";
 export default function Portfolio() {
   const sliderRef = useRef(null);
   const animationRef = useRef(null);
+
+  const isDragging = useRef(false);
   const isInteracting = useRef(false);
+  const startX = useRef(0);
+  const scrollStart = useRef(0);
+  const hasDragged = useRef(false);
 
   const proyectosLoop = [...proyectosReales, ...proyectosReales];
 
+  /* ---------------- AUTO SCROLL ---------------- */
   const autoScroll = () => {
     const slider = sliderRef.current;
-    if (!slider || isInteracting.current) return;
+    if (!slider || isInteracting.current || isDragging.current) return;
 
     slider.scrollLeft += 0.6;
 
@@ -33,16 +39,44 @@ export default function Portfolio() {
     cancelAnimationFrame(animationRef.current);
   };
 
-  const handleUserInteractionStart = () => {
+  /* ---------------- DRAG ---------------- */
+  const handleMouseDown = (e) => {
+    isDragging.current = true;
+    hasDragged.current = false;
     isInteracting.current = true;
+
     stopAutoScroll();
+    startX.current = e.pageX;
+    scrollStart.current = sliderRef.current.scrollLeft;
   };
 
-  const handleUserInteractionEnd = () => {
+  const handleMouseMove = (e) => {
+    if (!isDragging.current) return;
+
+    const walk = e.pageX - startX.current;
+
+    if (Math.abs(walk) > 5) {
+      hasDragged.current = true;
+    }
+
+    sliderRef.current.scrollLeft = scrollStart.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
     isInteracting.current = false;
     startAutoScroll();
   };
 
+  const handleMouseLeave = () => {
+    if (isDragging.current) {
+      isDragging.current = false;
+      isInteracting.current = false;
+      startAutoScroll();
+    }
+  };
+
+  /* ---------------- LOOP INFINITO ---------------- */
   const handleScroll = () => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -60,10 +94,7 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <section
-      id="portafolio"
-      className="bg-background py-20 relative min-h-screen"
-    >
+    <section id="portafolio" className="bg-background py-20 relative">
       <div className="mx-auto">
         <div className="mb-10 text-center">
           <h2 className="mb-4 text-3xl font-bold text-text-primary sm:text-4xl md:text-5xl">
@@ -76,13 +107,13 @@ export default function Portfolio() {
 
         <div
           ref={sliderRef}
-          onMouseEnter={handleUserInteractionStart}
-          onMouseLeave={handleUserInteractionEnd}
-          onTouchStart={handleUserInteractionStart}
-          onTouchEnd={handleUserInteractionEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
           onScroll={handleScroll}
           className="
-            flex gap-8 overflow-x-scroll py-10 px-2
+            flex gap-8 overflow-x-scroll py-10 px-4
             cursor-grab active:cursor-grabbing
             select-none scroll-smooth
           "
@@ -106,6 +137,11 @@ export default function Portfolio() {
                 href={proyecto.url || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => {
+                  if (hasDragged.current) {
+                    e.preventDefault();
+                  }
+                }}
                 className="
                   block border border-border rounded-xl overflow-hidden
                   bg-background transition-all
