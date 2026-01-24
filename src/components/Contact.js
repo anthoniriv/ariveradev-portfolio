@@ -13,7 +13,7 @@ export default function Contact() {
   });
 
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +34,8 @@ export default function Contact() {
     e.preventDefault();
     if (!validate()) return;
 
+    setStatus("loading");
+
     try {
       const res = await fetch("/api/contacto", {
         method: "POST",
@@ -41,9 +43,10 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error("Error");
+      if (!res.ok) throw new Error();
 
-      setSubmitted(true);
+      setStatus("success");
+
       setFormData({
         nombre: "",
         empresa: "",
@@ -53,9 +56,10 @@ export default function Contact() {
         mensaje: "",
       });
 
-      setTimeout(() => setSubmitted(false), 2500);
-    } catch (error) {
-      alert("No se pudo enviar el mensaje");
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
     }
   };
 
@@ -65,7 +69,6 @@ export default function Contact() {
       className="font-quantico py-24 px-4 sm:px-8 bg-gradient-to-b from-zinc-50 to-slate-100"
     >
       <div className="max-w-6xl mx-auto">
-        {/* TÍTULO */}
         <div className="text-center mb-10">
           <p className="text-3xl md:text-4xl font-medium tracking-tight text-slate-800">
             研究 · CONTÁCTANOS
@@ -73,42 +76,53 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
-          {/* FORMULARIO */}
           <div className="bg-white/70 backdrop-blur border border-slate-200 rounded-2xl p-10 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.25)]">
-            <h3 className="text-xl font-medium text-slate-800 mb-10">
+            <h3 className="text-xl font-medium text-slate-800 mb-8">
               Cuéntanos qué tienes en mente
             </h3>
+
+            {status === "success" && (
+              <div className="mb-8 bg-emerald-100 text-emerald-700 px-4 py-3 rounded-xl text-center font-medium">
+                Mensaje enviado correctamente ✓
+              </div>
+            )}
+
+            {status === "error" && (
+              <div className="mb-8 bg-rose-100 text-rose-700 px-4 py-3 rounded-xl text-center font-medium">
+                Error al enviar el mensaje
+              </div>
+            )}
 
             <form
               onSubmit={handleSubmit}
               className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10"
             >
-              {[
-                {
-                  label: "Nombre",
-                  name: "nombre",
-                  type: "text",
-                  required: true,
-                },
-                { label: "Empresa o proyecto (opcional)", name: "empresa" },
-              ].map((field) => (
-                <div key={field.name}>
-                  <label className="text-sm text-slate-500">
-                    {field.label}
-                  </label>
-                  <input
-                    name={field.name}
-                    value={formData[field.name]}
-                    onChange={handleChange}
-                    className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
-                  />
-                  {errors[field.name] && (
-                    <p className="text-xs text-rose-500 mt-2">
-                      {errors[field.name]}
-                    </p>
-                  )}
-                </div>
-              ))}
+              <div>
+                <label className="text-sm text-slate-500">Nombre</label>
+                <input
+                  name="nombre"
+                  value={formData.nombre}
+                  onChange={handleChange}
+                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                />
+                {errors.nombre && (
+                  <p className="text-xs text-rose-500 mt-2">
+                    {errors.nombre}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="text-sm text-slate-500">
+                  Empresa o proyecto (opcional)
+                </label>
+                <input
+                  name="empresa"
+                  value={formData.empresa}
+                  onChange={handleChange}
+                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                />
+              </div>
 
               <div>
                 <label className="text-sm text-slate-500">
@@ -118,15 +132,13 @@ export default function Contact() {
                   name="estado"
                   value={formData.estado}
                   onChange={handleChange}
-                  className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="idea">Solo tengo una idea</option>
-                  <option value="inicio">Quiero empezar desde cero</option>
-                  <option value="mejorar">
-                    Ya tengo algo y quiero mejorarlo
-                  </option>
-                  <option value="activo">Mi proyecto ya funciona</option>
+                  <option>Solo tengo una idea</option>
+                  <option>Quiero empezar desde cero</option>
+                  <option>Ya tengo algo y quiero mejorarlo</option>
+                  <option>Mi proyecto ya funciona</option>
                 </select>
               </div>
 
@@ -138,13 +150,13 @@ export default function Contact() {
                   name="tipo"
                   value={formData.tipo}
                   onChange={handleChange}
-                  className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="web">Página web</option>
-                  <option value="tienda">Tienda online</option>
-                  <option value="sistema">Sistema o plataforma</option>
-                  <option value="otro">Aún no lo tengo claro</option>
+                  <option>Página web</option>
+                  <option>Tienda online</option>
+                  <option>Sistema o plataforma</option>
+                  <option>Aún no lo tengo claro</option>
                 </select>
               </div>
 
@@ -155,10 +167,12 @@ export default function Contact() {
                   name="correo"
                   value={formData.correo}
                   onChange={handleChange}
-                  className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 />
                 {errors.correo && (
-                  <p className="text-xs text-rose-500 mt-2">{errors.correo}</p>
+                  <p className="text-xs text-rose-500 mt-2">
+                    {errors.correo}
+                  </p>
                 )}
               </div>
 
@@ -171,25 +185,36 @@ export default function Contact() {
                   rows={4}
                   value={formData.mensaje}
                   onChange={handleChange}
-                  className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none resize-none"
+                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none resize-none"
                 />
                 {errors.mensaje && (
-                  <p className="text-xs text-rose-500 mt-2">{errors.mensaje}</p>
+                  <p className="text-xs text-rose-500 mt-2">
+                    {errors.mensaje}
+                  </p>
                 )}
               </div>
 
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="w-full bg-indigo-700 text-white py-3 rounded-xl text-base font-medium hover:bg-indigo-800 transition"
+                  disabled={status === "loading"}
+                  className={`
+                    w-full py-3 rounded-xl text-base font-medium transition
+                    ${status === "idle" && "bg-indigo-700 text-white hover:bg-indigo-800"}
+                    ${status === "loading" && "bg-slate-400 text-white cursor-not-allowed"}
+                    ${status === "success" && "bg-emerald-600 text-white"}
+                    ${status === "error" && "bg-rose-600 text-white"}
+                  `}
                 >
-                  {submitted ? "Mensaje enviado" : "Enviar mensaje"}
+                  {status === "idle" && "Enviar mensaje"}
+                  {status === "loading" && "Enviando..."}
+                  {status === "success" && "Mensaje enviado ✓"}
+                  {status === "error" && "Reintentar"}
                 </button>
               </div>
             </form>
           </div>
 
-          {/* INFO */}
           <div className="flex flex-col gap-10">
             <div className="bg-white/60 border border-slate-200 rounded-2xl p-10">
               <h3 className="text-xl font-medium text-slate-800 mb-6">
@@ -197,8 +222,8 @@ export default function Contact() {
               </h3>
 
               <p className="text-base text-slate-600 mb-10 leading-relaxed">
-                No necesitas saber de tecnología ni tener todo claro. Te
-                ayudamos a ordenar tu idea y convertirla en algo real.
+                No necesitas saber de tecnología ni tener todo claro. Te ayudamos
+                a ordenar tu idea y convertirla en algo real.
               </p>
 
               <div className="space-y-6 text-base">
