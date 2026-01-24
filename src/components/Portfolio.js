@@ -1,22 +1,31 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { proyectosReales } from "../data/onilabs";
-import { useEffect, useRef } from "react";
 
 export default function Portfolio() {
+  /* =========================
+     Refs
+  ========================= */
   const sliderRef = useRef(null);
   const animationRef = useRef(null);
 
   const isDragging = useRef(false);
   const isInteracting = useRef(false);
-  const startX = useRef(0);
-  const scrollStart = useRef(0);
   const hasDragged = useRef(false);
 
+  const startX = useRef(0);
+  const scrollStart = useRef(0);
+
+  /* =========================
+     Data
+  ========================= */
   const proyectosLoop = [...proyectosReales, ...proyectosReales];
 
-  /* ---------------- AUTO SCROLL ---------------- */
+  /* =========================
+     Auto scroll
+  ========================= */
   const autoScroll = () => {
     const slider = sliderRef.current;
     if (!slider || isInteracting.current || isDragging.current) return;
@@ -39,13 +48,16 @@ export default function Portfolio() {
     cancelAnimationFrame(animationRef.current);
   };
 
-  /* ---------------- DRAG ---------------- */
+  /* =========================
+     Mouse events
+  ========================= */
   const handleMouseDown = (e) => {
     isDragging.current = true;
-    hasDragged.current = false;
     isInteracting.current = true;
+    hasDragged.current = false;
 
     stopAutoScroll();
+
     startX.current = e.pageX;
     scrollStart.current = sliderRef.current.scrollLeft;
   };
@@ -69,14 +81,16 @@ export default function Portfolio() {
   };
 
   const handleMouseLeave = () => {
-    if (isDragging.current) {
-      isDragging.current = false;
-      isInteracting.current = false;
-      startAutoScroll();
-    }
+    if (!isDragging.current) return;
+
+    isDragging.current = false;
+    isInteracting.current = false;
+    startAutoScroll();
   };
 
-  /* ---------------- LOOP INFINITO ---------------- */
+  /* =========================
+     Infinite scroll fix
+  ========================= */
   const handleScroll = () => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -88,14 +102,21 @@ export default function Portfolio() {
     }
   };
 
+  /* =========================
+     Lifecycle
+  ========================= */
   useEffect(() => {
     startAutoScroll();
     return () => cancelAnimationFrame(animationRef.current);
   }, []);
 
+  /* =========================
+     Render
+  ========================= */
   return (
-    <section id="portafolio" className="bg-background py-20 relative">
+    <section id="portafolio" className="relative bg-background py-20">
       <div className="mx-auto">
+        {/* Header */}
         <div className="mb-10 text-center">
           <h2 className="mb-4 text-3xl font-bold text-text-primary sm:text-4xl md:text-5xl">
             Repositorio
@@ -105,6 +126,7 @@ export default function Portfolio() {
           </p>
         </div>
 
+        {/* Slider */}
         <div
           ref={sliderRef}
           onMouseDown={handleMouseDown}
@@ -113,7 +135,7 @@ export default function Portfolio() {
           onMouseLeave={handleMouseLeave}
           onScroll={handleScroll}
           className="
-            flex gap-8 overflow-x-scroll py-10 px-4
+            flex gap-8 overflow-x-scroll px-4 py-10
             cursor-grab active:cursor-grabbing
             select-none scroll-smooth
           "
@@ -133,42 +155,51 @@ export default function Portfolio() {
               key={index}
               className="min-w-[280px] sm:min-w-[340px] lg:min-w-[780px]"
             >
-              <a
-                href={proyecto.url || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => {
-                  if (hasDragged.current) {
-                    e.preventDefault();
-                  }
-                }}
+              <div
                 className="
-                  block border border-border rounded-xl overflow-hidden
-                  bg-background transition-all
+                  rounded-xl overflow-hidden
+                  border border-border bg-background
+                  transition-all
                   hover:border-primary hover:shadow-xl
                 "
               >
-                <div className="relative w-full aspect-video">
+                <div className="relative aspect-video w-full">
                   <Image
                     src={proyecto.imagen}
                     alt={proyecto.nombre}
                     fill
-                    className="object-cover"
                     sizes="(max-width: 768px) 80vw, 780px"
+                    className="object-cover"
                   />
 
                   <div className="absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-transparent to-transparent p-5">
                     <div>
-                      <h3 className="text-lg font-semibold text-text-primary">
+                      {/* Título (único link) */}
+                      <a
+                        href={proyecto.url || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          if (hasDragged.current) e.preventDefault();
+                        }}
+                        className="
+                          inline-block text-lg font-semibold
+                          text-white
+                          hover:text-primary transition-colors
+                          drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]
+                          [text-shadow:0_0_3px_rgba(0,0,0,0.9)]
+                        "
+                      >
                         {proyecto.nombre}
-                      </h3>
-                      <p className="text-sm text-text-secondary">
+                      </a>
+
+                      <p className="mt-1 text-sm text-text-secondary">
                         {proyecto.descripcion}
                       </p>
                     </div>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
           ))}
         </div>
