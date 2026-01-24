@@ -25,16 +25,23 @@ export default function Services() {
             <div
               key={servicio.id}
               className="
-                bg-background text-center border border-border rounded-3xl
+                bg-background text-center
+                border border-border rounded-3xl
                 p-5 sm:p-6
-                shadow-sm hover:border-blue-300 hover:shadow-md
-                transition-all transform hover:-translate-y-1
+                shadow-sm
+                transition-all duration-150 ease-out
+                hover:shadow-xl
+                hover:border-primary/40
               "
             >
-              <div className="text-4xl mb-4">{servicio.icono}</div>
+              <div className="text-4xl mb-4">
+                {servicio.icono}
+              </div>
+
               <h3 className="text-lg sm:text-xl font-semibold mb-3 text-text-primary">
                 {servicio.titulo}
               </h3>
+
               <p className="text-sm sm:text-base text-text-secondary">
                 {servicio.descripcion}
               </p>

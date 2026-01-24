@@ -6,36 +6,63 @@ import { useEffect, useRef } from "react";
 
 export default function Portfolio() {
   const sliderRef = useRef(null);
-  const intervalRef = useRef(null);
+  const animationRef = useRef(null);
+  const isInteracting = useRef(false);
 
   const proyectosLoop = [...proyectosReales, ...proyectosReales];
 
-  const startAutoScroll = () => {
+  const autoScroll = () => {
     const slider = sliderRef.current;
-    if (!slider) return;
+    if (!slider || isInteracting.current) return;
 
-    intervalRef.current = setInterval(() => {
-      slider.scrollLeft += 1;
+    slider.scrollLeft += 0.6;
 
-      if (slider.scrollLeft >= slider.scrollWidth / 2) {
-        slider.scrollLeft = 0;
-      }
-    }, 20);
+    if (slider.scrollLeft >= slider.scrollWidth / 2) {
+      slider.scrollLeft -= slider.scrollWidth / 2;
+    }
+
+    animationRef.current = requestAnimationFrame(autoScroll);
+  };
+
+  const startAutoScroll = () => {
+    cancelAnimationFrame(animationRef.current);
+    animationRef.current = requestAnimationFrame(autoScroll);
   };
 
   const stopAutoScroll = () => {
-    clearInterval(intervalRef.current);
+    cancelAnimationFrame(animationRef.current);
+  };
+
+  const handleUserInteractionStart = () => {
+    isInteracting.current = true;
+    stopAutoScroll();
+  };
+
+  const handleUserInteractionEnd = () => {
+    isInteracting.current = false;
+    startAutoScroll();
+  };
+
+  const handleScroll = () => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    if (slider.scrollLeft <= 0) {
+      slider.scrollLeft += slider.scrollWidth / 2;
+    } else if (slider.scrollLeft >= slider.scrollWidth / 2) {
+      slider.scrollLeft -= slider.scrollWidth / 2;
+    }
   };
 
   useEffect(() => {
     startAutoScroll();
-    return () => stopAutoScroll();
+    return () => cancelAnimationFrame(animationRef.current);
   }, []);
 
   return (
     <section
       id="portafolio"
-      className="bg-background py-20 "
+      className="bg-background py-20 relative min-h-screen"
     >
       <div className="mx-auto">
         <div className="mb-10 text-center">
@@ -49,9 +76,16 @@ export default function Portfolio() {
 
         <div
           ref={sliderRef}
-          onMouseEnter={stopAutoScroll}
-          onMouseLeave={startAutoScroll}
-          className="flex gap-8 overflow-x-scroll py-10 px-2 cursor-pointer"
+          onMouseEnter={handleUserInteractionStart}
+          onMouseLeave={handleUserInteractionEnd}
+          onTouchStart={handleUserInteractionStart}
+          onTouchEnd={handleUserInteractionEnd}
+          onScroll={handleScroll}
+          className="
+            flex gap-8 overflow-x-scroll py-10 px-2
+            cursor-grab active:cursor-grabbing
+            select-none scroll-smooth
+          "
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -72,18 +106,22 @@ export default function Portfolio() {
                 href={proyecto.url || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block border border-border rounded-lg overflow-hidden bg-background hover:border-primary transition-all"
+                className="
+                  block border border-border rounded-xl overflow-hidden
+                  bg-background transition-all
+                  hover:border-primary hover:shadow-xl
+                "
               >
                 <div className="relative w-full aspect-video">
                   <Image
                     src={proyecto.imagen}
                     alt={proyecto.nombre}
                     fill
-                    className="object-cover rounded-lg"
-                    sizes="(max-width: 768px) 80vw, 400px"
+                    className="object-cover"
+                    sizes="(max-width: 768px) 80vw, 780px"
                   />
 
-                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-transparent to-transparent p-4">
+                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-transparent to-transparent p-5">
                     <div>
                       <h3 className="text-lg font-semibold text-text-primary">
                         {proyecto.nombre}
