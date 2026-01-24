@@ -105,7 +105,7 @@ export default function Footer() {
 
         <div className="border-t border-border pt-6 md:pt-8 text-center">
           <p className="text-text-secondary text-xs sm:text-sm">
-            © {currentYear} Onilabs. Todos los derechos reservados.
+            © {currentYear} OnilLabs. Todos los derechos reservados.
           </p>
         </div>
       </div>

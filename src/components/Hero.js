@@ -1,44 +1,62 @@
+import React from 'react';
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 bg-gradient-to-b from-background to-surface">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-24 left-12 w-96 h-96 bg-primary-soft/50 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-24 right-12 w-96 h-96 bg-accent-soft/50 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28rem] h-[28rem] bg-primary-soft/30 rounded-full blur-3xl"></div>
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Imagen de Fondo */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
+        style={{ 
+          backgroundImage: "url('/fondoHero.png')",
+          filter: "brightness(0.5)" 
+        }} 
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold
-          leading-[1.15] pb-3
-          bg-gradient-to-r from-primary via-primary-dark to-accent
-          bg-clip-text text-transparent">
-          Construimos software escalable para negocios reales
+      {/* Overlay Radial (Vignette) */}
+      <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_transparent_20%,_rgba(0,0,0,0.8)_100%)]" />
+      
+      {/* Overlay de color extra */}
+      <div className="absolute inset-0 z-10 bg-black/40" />
+
+      <div className="relative z-20 max-w-5xl mx-auto px-4 text-center">
+        
+       
+
+        {/* Título Principal */}
+        <h1 className="text-5xl sm:text-6xl lg:text-[5.4rem] font-black leading-[1.1] tracking-tight text-white mb-6">
+          Construimos software <br />
+          <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent">
+            para negocios reales
+          </span>
         </h1>
 
-        <p className="text-lg sm:text-xl md:text-2xl text-text-secondary mt-8 mb-10 max-w-3xl mx-auto leading-relaxed">
-          Desarrollo web, aplicaciones móviles, microservicios, integraciones y ecommerce WordPress/WooCommerce.
-          <br className="hidden sm:block" />
-          Soluciones tecnológicas que escalan con tu negocio.
+        {/* Descripción */}
+        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+          Desde microservicios hasta integraciones complejas. 
+          Creamos soluciones <span className="text-white font-semibold">tecnológicas robustas</span> que impulsan tu crecimiento digital.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        {/* Botones */}
+        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
           <a
-            href="#contacto"
-            className="bg-primary text-white px-8 py-4 rounded-xl text-lg font-semibold
-              hover:bg-primary-dark hover:shadow-lg
-              transition-all duration-300 hover:-translate-y-0.5"
+            href="#contactanos"
+            className="group relative px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,99,235,0.4)]"
           >
-            Agenda una llamada
+            <span className="relative z-10">Agenda una llamada</span>
           </a>
 
           <a
-            href="#proyectos"
-            className="border-2 border-primary text-primary px-8 py-4 rounded-xl text-lg font-semibold
-              hover:bg-primary-soft transition-all duration-300 hover:-translate-y-0.5"
+            href="#portafolio"
+            className="px-8 py-4 bg-white/5 border border-white/20 text-white rounded-full font-bold text-lg backdrop-blur-md hover:bg-white/10 transition-all hover:border-white/40"
           >
-            Ver proyectos
+            Ver repositorio
           </a>
         </div>
+      </div>
+
+      {/* Indicador de scroll */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-30">
+        <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
       </div>
     </section>
   );

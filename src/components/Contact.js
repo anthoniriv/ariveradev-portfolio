@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { links } from "../data/onilabs";
 import { AiOutlineLinkedin, AiOutlineMail } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -54,47 +53,44 @@ export default function Contact() {
       id="contactanos"
       className="font-quantico py-24 px-4 sm:px-8 bg-gradient-to-b from-zinc-50 to-slate-100"
     >
-      <div className="max-w-6xl font-quantico mx-auto">
-        <div className="text-center mb-8">
-          <p className="text-4xl md:text-5xl font-medium tracking-tight text-slate-800">
+      <div className="max-w-6xl mx-auto">
+        {/* TÍTULO */}
+        <div className="text-center mb-10">
+          <p className="text-3xl md:text-4xl font-medium tracking-tight text-slate-800">
             研究 · CONTÁCTANOS
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+          {/* FORMULARIO */}
           <div className="bg-white/70 backdrop-blur border border-slate-200 rounded-2xl p-10 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.25)]">
-            <h3 className="text-2xl font-medium text-slate-800 mb-10">
+            <h3 className="text-xl font-medium text-slate-800 mb-10">
               Cuéntanos qué tienes en mente
             </h3>
 
             <form
               onSubmit={handleSubmit}
-              className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 font-quantico"
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10"
             >
-              <div>
-                <label className="text-sm text-slate-500">Nombre</label>
-                <input
-                  name="nombre"
-                  value={formData.nombre}
-                  onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
-                />
-                {errors.nombre && (
-                  <p className="text-xs text-rose-500 mt-2">{errors.nombre}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="text-sm text-slate-500">
-                  Empresa o proyecto (opcional)
-                </label>
-                <input
-                  name="empresa"
-                  value={formData.empresa}
-                  onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
-                />
-              </div>
+              {[
+                { label: "Nombre", name: "nombre", type: "text", required: true },
+                { label: "Empresa o proyecto (opcional)", name: "empresa" },
+              ].map((field) => (
+                <div key={field.name}>
+                  <label className="text-sm text-slate-500">{field.label}</label>
+                  <input
+                    name={field.name}
+                    value={formData[field.name]}
+                    onChange={handleChange}
+                    className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  />
+                  {errors[field.name] && (
+                    <p className="text-xs text-rose-500 mt-2">
+                      {errors[field.name]}
+                    </p>
+                  )}
+                </div>
+              ))}
 
               <div>
                 <label className="text-sm text-slate-500">
@@ -104,17 +100,13 @@ export default function Contact() {
                   name="estado"
                   value={formData.estado}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 >
                   <option value="">Selecciona una opción</option>
                   <option value="idea">Solo tengo una idea</option>
                   <option value="inicio">Quiero empezar desde cero</option>
-                  <option value="mejorar">
-                    Ya tengo algo y quiero mejorarlo
-                  </option>
-                  <option value="activo">
-                    Mi proyecto ya está funcionando
-                  </option>
+                  <option value="mejorar">Ya tengo algo y quiero mejorarlo</option>
+                  <option value="activo">Mi proyecto ya funciona</option>
                 </select>
               </div>
 
@@ -126,7 +118,7 @@ export default function Contact() {
                   name="tipo"
                   value={formData.tipo}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 >
                   <option value="">Selecciona una opción</option>
                   <option value="web">Página web</option>
@@ -143,10 +135,12 @@ export default function Contact() {
                   name="correo"
                   value={formData.correo}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 />
                 {errors.correo && (
-                  <p className="text-xs text-rose-500 mt-2">{errors.correo}</p>
+                  <p className="text-xs text-rose-500 mt-2">
+                    {errors.correo}
+                  </p>
                 )}
               </div>
 
@@ -159,18 +153,19 @@ export default function Contact() {
                   rows={4}
                   value={formData.mensaje}
                   onChange={handleChange}
-                  placeholder="Qué quieres lograr y para quién es"
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none resize-none"
+                  className="w-full py-3 text-base bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none resize-none"
                 />
                 {errors.mensaje && (
-                  <p className="text-xs text-rose-500 mt-2">{errors.mensaje}</p>
+                  <p className="text-xs text-rose-500 mt-2">
+                    {errors.mensaje}
+                  </p>
                 )}
               </div>
 
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="w-full bg-indigo-700 text-white py-3 rounded-xl font-medium hover:bg-indigo-800 transition"
+                  className="w-full bg-indigo-700 text-white py-3 rounded-xl text-base font-medium hover:bg-indigo-800 transition"
                 >
                   {submitted ? "Mensaje enviado" : "Enviar mensaje"}
                 </button>
@@ -178,35 +173,39 @@ export default function Contact() {
             </form>
           </div>
 
+          {/* INFO */}
           <div className="flex flex-col gap-10">
             <div className="bg-white/60 border border-slate-200 rounded-2xl p-10">
-              <h3 className="text-2xl font-medium text-slate-800 mb-6">
+              <h3 className="text-xl font-medium text-slate-800 mb-6">
                 Te acompañamos en todo el proceso
               </h3>
 
-              <p className="text-slate-600 mb-10 leading-relaxed">
-                No necesitas saber de tecnología ni tener todo claro. Te
-                ayudamos a ordenar tu idea y convertirla en algo real.
+              <p className="text-base text-slate-600 mb-10 leading-relaxed">
+                No necesitas saber de tecnología ni tener todo claro. Te ayudamos
+                a ordenar tu idea y convertirla en algo real.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-6 text-base">
                 <div className="flex items-center gap-4">
-                  <FaWhatsapp className="w-8 h-8 text-[#25D366]" />
-                  <span className="text-slate-700">
-                    Contacto directo por WhatsApp
-                  </span>
+                  <FaWhatsapp className="w-6 h-6 text-[#25D366]" />
+                  <span className="text-slate-700">987 654 321</span>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <AiOutlineLinkedin className="w-8 h-8 text-[#0A66C2]" />
-                  <span className="text-slate-700">
-                    Perfil profesional en LinkedIn
-                  </span>
-                </div>
+                <a
+                  href="https://www.linkedin.com/company/onilabs-dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 hover:opacity-80 transition"
+                >
+                  <AiOutlineLinkedin className="w-6 h-6 text-[#0A66C2]" />
+                  <span className="text-slate-700">OniLabs</span>
+                </a>
 
                 <div className="flex items-center gap-4">
-                  <AiOutlineMail className="w-8 h-8 text-slate-500" />
-                  <span className="text-slate-700">{links.correo}</span>
+                  <AiOutlineMail className="w-6 h-6 text-slate-500" />
+                  <span className="text-slate-700">
+                    contacto.onilabs@gmail.com
+                  </span>
                 </div>
               </div>
             </div>
@@ -217,7 +216,7 @@ export default function Contact() {
               </p>
               <ul className="space-y-2">
                 <li>• Leemos tu mensaje</li>
-                <li>• Te respondemos en 24–48 horas</li>
+                <li>• Respondemos en 24–48 horas</li>
                 <li>• Te proponemos la mejor opción</li>
               </ul>
             </div>
