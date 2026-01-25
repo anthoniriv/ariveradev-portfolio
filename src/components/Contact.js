@@ -106,9 +106,7 @@ export default function Contact() {
                   className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 />
                 {errors.nombre && (
-                  <p className="text-xs text-rose-500 mt-2">
-                    {errors.nombre}
-                  </p>
+                  <p className="text-xs text-rose-500 mt-2">{errors.nombre}</p>
                 )}
               </div>
 
@@ -170,9 +168,7 @@ export default function Contact() {
                   className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
                 />
                 {errors.correo && (
-                  <p className="text-xs text-rose-500 mt-2">
-                    {errors.correo}
-                  </p>
+                  <p className="text-xs text-rose-500 mt-2">{errors.correo}</p>
                 )}
               </div>
 
@@ -188,9 +184,7 @@ export default function Contact() {
                   className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none resize-none"
                 />
                 {errors.mensaje && (
-                  <p className="text-xs text-rose-500 mt-2">
-                    {errors.mensaje}
-                  </p>
+                  <p className="text-xs text-rose-500 mt-2">{errors.mensaje}</p>
                 )}
               </div>
 
@@ -222,15 +216,20 @@ export default function Contact() {
               </h3>
 
               <p className="text-base text-slate-600 mb-10 leading-relaxed">
-                No necesitas saber de tecnología ni tener todo claro. Te ayudamos
-                a ordenar tu idea y convertirla en algo real.
+                No necesitas saber de tecnología ni tener todo claro. Te
+                ayudamos a ordenar tu idea y convertirla en algo real.
               </p>
 
               <div className="space-y-6 text-base">
-                <div className="flex items-center gap-4">
+                <a
+                  href="https://wa.me/51993109998"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 hover:opacity-80 transition"
+                >
                   <FaWhatsapp className="w-6 h-6 text-[#25D366]" />
-                  <span className="text-slate-700">987 654 321</span>
-                </div>
+                  <span className="text-slate-700">+51 993 109 998</span>
+                </a>
 
                 <a
                   href="https://www.linkedin.com/company/onilabs-dev"
@@ -242,12 +241,17 @@ export default function Contact() {
                   <span className="text-slate-700">OniLabs</span>
                 </a>
 
-                <div className="flex items-center gap-4">
+                <a
+                  href="mailto:contacto.onilabs@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 hover:opacity-80 transition"
+                >
                   <AiOutlineMail className="w-6 h-6 text-slate-500" />
                   <span className="text-slate-700">
                     contacto.onilabs@gmail.com
                   </span>
-                </div>
+                </a>
               </div>
             </div>
 

@@ -20,7 +20,9 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center md:items-center text-center md:text-left">
-            <h4 className="text-text-primary hidden md:block font-semibold mb-4">Enlaces</h4>
+            <h4 className="text-text-primary hidden md:block font-semibold mb-4">
+              Enlaces
+            </h4>
 
             <ul className="hidden md:block space-y-2">
               <li>
@@ -71,7 +73,7 @@ export default function Footer() {
 
             <div className="flex space-x-6">
               <a
-                href={links.linkedin}
+                href="https://www.linkedin.com/company/onilabs-dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -81,7 +83,7 @@ export default function Footer() {
               </a>
 
               <a
-                href={links.github}
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -91,7 +93,7 @@ export default function Footer() {
               </a>
 
               <a
-                href={links.whatsapp}
+                href="https://wa.me/51993109998"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"

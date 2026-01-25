@@ -1,24 +1,21 @@
-import React from 'react';
+import React from "react";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      <div 
+      <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
-        style={{ 
+        style={{
           backgroundImage: "url('/fondoHero1.png')",
-          filter: "brightness(0.9)" 
-        }} 
+          filter: "brightness(0.9)",
+        }}
       />
 
-      <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_transparent_20%,_rgba(0,0,0,0.8)_100%)]" />
-      
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/48 via-black/50 to-transparent" />
+
       <div className="absolute inset-0 z-10 bg-black/40" />
 
       <div className="relative z-20 max-w-5xl mx-auto px-4 text-center">
-        
-       
-
         <h1 className="text-5xl sm:text-6xl lg:text-[5.4rem] font-black leading-[1.1] tracking-tight text-white mb-6">
           Construimos software <br />
           <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent">
@@ -27,8 +24,11 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-          Desde microservicios hasta integraciones complejas. 
-          Creamos soluciones <span className="text-white font-semibold">tecnológicas robustas</span> que impulsan tu crecimiento digital.
+          Desde microservicios hasta integraciones complejas. Creamos soluciones{" "}
+          <span className="text-white font-semibold">
+            tecnológicas robustas
+          </span>{" "}
+          que impulsan tu crecimiento digital.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
