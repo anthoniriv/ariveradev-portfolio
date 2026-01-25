@@ -133,13 +133,13 @@ export default function Portfolio() {
                   <div className="absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-transparent to-transparent px-10 pb-4">
                     <div className="flex w-full items-end justify-between">
                       <div className="relative">
-                        <div className="font-bold absolute -inset-2 bg-white/60 blur-xl rounded-lg"></div>
+                        <div className="absolute -inset-2 bg-white/60 blur-xl rounded-lg"></div>
 
-                        <h3 className="relative text-lg font-bold text-black">
+                        <h3 className="relative text-2xl font-bold text-primary">
                           {proyecto.nombre}
                         </h3>
 
-                        <p className="relative mt-1 text-sm text-text-secondary">
+                        <p className="relative mt-2 text-black font-bold text-m text-text-secondary [-webkit-text-stroke:0.4px_rgba(255,255,255,0.8)]">
                           {proyecto.descripcion}
                         </p>
                       </div>
@@ -151,7 +151,7 @@ export default function Portfolio() {
                         onClick={(e) => {
                           if (hasDragged.current) e.preventDefault();
                         }}
-                        className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-sm font-semibold px-14 py-2 rounded-lg transition-colors whitespace-nowrap"
+                        className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-m font-semibold px-14 py-2 rounded-lg transition-colors whitespace-nowrap"
                       >
                         Ver página
                         <span className="text-lg">→</span>
