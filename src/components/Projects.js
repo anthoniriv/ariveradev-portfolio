@@ -17,28 +17,51 @@ export default function Projects() {
           {proyectosEjemplo.map((proyecto) => (
             <div
               key={proyecto.id}
-              className="bg-background border border-border rounded-xl p-6 shadow-sm hover:border-accent hover:shadow-md transition-all transform hover:-translate-y-1"
+              className="bg-background border border-border rounded-xl p-6 shadow-sm hover:border-accent hover:shadow-md transition-all transform hover:-translate-y-1 flex flex-col justify-between"
             >
-              <h3 className="text-xl font-semibold mb-3 text-text-primary">{proyecto.titulo}</h3>
-              <p className="text-text-secondary mb-4 text-sm">
-                <span className="font-semibold text-accent">Objetivo:</span> {proyecto.objetivo}
-              </p>
-              <div className="mb-4">
-                <p className="text-xs font-semibold text-text-muted mb-2">Stack tecnológico:</p>
-                <div className="flex flex-wrap gap-2">
-                  {proyecto.stack.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="text-xs px-2 py-1 bg-accent-soft text-accent rounded border border-accent/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <div>
+                <h3 className="text-xl font-semibold mb-3 text-text-primary">
+                  {proyecto.titulo}
+                </h3>
+
+                <p className="text-text-secondary mb-4 text-sm">
+                  <span className="font-semibold text-accent">Objetivo:</span>{" "}
+                  {proyecto.objetivo}
+                </p>
+
+                <div className="mb-4">
+                  <p className="text-xs font-semibold text-text-muted mb-2">
+                    Stack tecnológico:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {proyecto.stack.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="text-xs px-2 py-1 bg-accent-soft text-accent rounded border border-accent/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+
+                <p className="text-sm text-text-primary mb-6">
+                  <span className="font-semibold text-primary">Resultado:</span>{" "}
+                  {proyecto.resultado}
+                </p>
               </div>
-              <p className="text-sm text-text-primary">
-                <span className="font-semibold text-primary">Resultado:</span> {proyecto.resultado}
-              </p>
+
+              <div className="flex justify-end">
+                <a
+                  href={proyecto.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                >
+                  Ver página
+                  <span className="text-lg">→</span>
+                </a>
+              </div>
             </div>
           ))}
         </div>
