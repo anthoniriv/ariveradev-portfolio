@@ -5,35 +5,27 @@ import Image from "next/image";
 import { proyectosReales } from "../data/onilabs";
 
 export default function Portfolio() {
-  /* =========================
-     Refs
-  ========================= */
   const sliderRef = useRef(null);
   const animationRef = useRef(null);
 
   const isDragging = useRef(false);
-  const isInteracting = useRef(false);
   const hasDragged = useRef(false);
 
   const startX = useRef(0);
   const scrollStart = useRef(0);
 
-  /* =========================
-     Data
-  ========================= */
   const proyectosLoop = [...proyectosReales, ...proyectosReales];
 
-  /* =========================
-     Auto scroll
-  ========================= */
   const autoScroll = () => {
     const slider = sliderRef.current;
-    if (!slider || isInteracting.current || isDragging.current) return;
+    if (!slider || isDragging.current) return;
+
+    const half = slider.scrollWidth / 2;
 
     slider.scrollLeft += 0.6;
 
-    if (slider.scrollLeft >= slider.scrollWidth / 2) {
-      slider.scrollLeft -= slider.scrollWidth / 2;
+    if (slider.scrollLeft >= half) {
+      slider.scrollLeft -= half;
     }
 
     animationRef.current = requestAnimationFrame(autoScroll);
@@ -48,75 +40,57 @@ export default function Portfolio() {
     cancelAnimationFrame(animationRef.current);
   };
 
-  /* =========================
-     Mouse events
-  ========================= */
   const handleMouseDown = (e) => {
     isDragging.current = true;
-    isInteracting.current = true;
     hasDragged.current = false;
 
     stopAutoScroll();
 
-    startX.current = e.pageX;
+    startX.current = e.clientX;
     scrollStart.current = sliderRef.current.scrollLeft;
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging.current) return;
 
-    const walk = e.pageX - startX.current;
+    const slider = sliderRef.current;
+    const half = slider.scrollWidth / 2;
 
-    if (Math.abs(walk) > 5) {
-      hasDragged.current = true;
-    }
+    const dx = e.clientX - startX.current;
+    let next = scrollStart.current - dx;
 
-    sliderRef.current.scrollLeft = scrollStart.current - walk;
+    if (next < 0) next += half;
+    if (next >= half) next -= half;
+
+    if (Math.abs(dx) > 5) hasDragged.current = true;
+
+    slider.scrollLeft = next;
   };
 
   const handleMouseUp = () => {
     isDragging.current = false;
-    isInteracting.current = false;
     startAutoScroll();
   };
 
   const handleMouseLeave = () => {
     if (!isDragging.current) return;
-
     isDragging.current = false;
-    isInteracting.current = false;
     startAutoScroll();
   };
 
-  /* =========================
-     Infinite scroll fix
-  ========================= */
-  const handleScroll = () => {
+  useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
 
-    if (slider.scrollLeft <= 0) {
-      slider.scrollLeft += slider.scrollWidth / 2;
-    } else if (slider.scrollLeft >= slider.scrollWidth / 2) {
-      slider.scrollLeft -= slider.scrollWidth / 2;
-    }
-  };
-
-  /* =========================
-     Lifecycle
-  ========================= */
-  useEffect(() => {
+    slider.scrollLeft = slider.scrollWidth / 4;
     startAutoScroll();
+
     return () => cancelAnimationFrame(animationRef.current);
   }, []);
 
-  /* =========================
-     Render
-  ========================= */
   return (
     <section id="portafolio" className="relative bg-background py-20">
       <div className="mx-auto">
-        {/* Header */}
         <div className="mb-10 text-center">
           <h2 className="mb-4 text-3xl font-bold text-text-primary sm:text-4xl md:text-5xl">
             Repositorio
@@ -126,23 +100,14 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* Slider */}
         <div
           ref={sliderRef}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
-          onScroll={handleScroll}
-          className="
-            flex gap-8 overflow-x-scroll px-4 py-10
-            cursor-grab active:cursor-grabbing
-            select-none scroll-smooth
-          "
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
+          className="flex gap-8 overflow-x-scroll px-4 py-10 cursor-grab active:cursor-grabbing select-none"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           <style jsx>{`
             div::-webkit-scrollbar {
@@ -155,14 +120,7 @@ export default function Portfolio() {
               key={index}
               className="min-w-[280px] sm:min-w-[340px] lg:min-w-[780px]"
             >
-              <div
-                className="
-                  rounded-xl overflow-hidden
-                  border border-border bg-background
-                  transition-all
-                  hover:border-primary hover:shadow-xl
-                "
-              >
+              <div className="rounded-xl overflow-hidden border border-border bg-background transition-all hover:border-primary hover:shadow-xl">
                 <div className="relative aspect-video w-full">
                   <Image
                     src={proyecto.imagen}
@@ -171,10 +129,8 @@ export default function Portfolio() {
                     sizes="(max-width: 768px) 80vw, 780px"
                     className="object-cover"
                   />
-
                   <div className="absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-transparent to-transparent p-5">
                     <div>
-                      {/* Título (único link) */}
                       <a
                         href={proyecto.url || "#"}
                         target="_blank"
@@ -182,17 +138,10 @@ export default function Portfolio() {
                         onClick={(e) => {
                           if (hasDragged.current) e.preventDefault();
                         }}
-                        className="
-                          inline-block text-lg font-semibold
-                          text-white
-                          hover:text-primary transition-colors
-                          drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]
-                          [text-shadow:0_0_3px_rgba(0,0,0,0.9)]
-                        "
+                        className="inline-block text-lg font-semibold text-white hover:text-primary transition-colors drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]"
                       >
                         {proyecto.nombre}
                       </a>
-
                       <p className="mt-1 text-sm text-text-secondary">
                         {proyecto.descripcion}
                       </p>
