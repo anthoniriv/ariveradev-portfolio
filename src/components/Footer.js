@@ -6,14 +6,21 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-surface border-t border-border py-10 lg:py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-b border-t border-border pt-10 pb-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10 md:mb-8">
           <div className="text-center md:text-left">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-3">
-              Onilabs
-            </h3>
-            <p className="text-text-secondary text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
+            <img
+              src="/logo.png"
+              alt="OniLabs logo"
+              className="h-20 w-20 object-contain mb-2"
+            />
+            <a
+              href="#"
+              className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              OniLabs
+            </a>
+            <p className="text-text-secondary mt-2 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
               Laboratorio de programación especializado en desarrollo web,
               móvil, microservicios y ecommerce.
             </p>
@@ -24,7 +31,7 @@ export default function Footer() {
               Enlaces
             </h4>
 
-            <ul className="hidden md:block space-y-2">
+            <ul className="hidden md:block ml-9 space-y-2">
               <li>
                 <a
                   href="#servicios"
@@ -83,7 +90,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="#"
+                href="https://github.com/OnichanDevTeam"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -105,7 +112,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border pt-6 md:pt-8 text-center">
+        <div className="border-t border-border md:pt-8 text-center">
           <p className="text-text-secondary text-xs sm:text-sm">
             © {currentYear} OnilLabs. Todos los derechos reservados.
           </p>
