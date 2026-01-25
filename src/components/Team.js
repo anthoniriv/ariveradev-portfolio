@@ -28,13 +28,11 @@ export default function Team() {
                 lg:min-h-[440px]
                 flex flex-col items-center text-center
                 shadow-sm
-
                 select-none cursor-default
                 transition-all duration-150 ease-out
                 hover:border-primary/50 hover:shadow-xl hover:-translate-y-2
               "
             >
-              {/* Glow SOLO en hover */}
               <div
                 className="
                   absolute -top-16 lg:-top-20
@@ -47,10 +45,14 @@ export default function Team() {
                 "
               />
 
-              <div className="relative w-24 h-24 lg:w-36 lg:h-36 mb-6 lg:mb-10">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent blur-xl opacity-30" />
-                <div className="relative w-full h-full rounded-full bg-surface flex items-center justify-center text-primary text-3xl lg:text-4xl font-bold tracking-wide shadow-md">
-                  {miembro.iniciales}
+              <div className="relative w-28 h-48 lg:w-40 lg:h-64 mb-6 lg:mb-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent blur-xl opacity-30 rounded-full" />
+                <div className="relative w-full h-full rounded-full overflow-hidden shadow-md bg-surface">
+                  <img
+                    src={miembro.imagen}
+                    alt={miembro.nombre}
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
               </div>
 
