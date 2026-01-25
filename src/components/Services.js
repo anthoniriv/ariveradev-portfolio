@@ -2,10 +2,10 @@ import { servicios } from "../data/onilabs";
 
 export default function Services() {
   return (
-    <section id="servicios" className="py-14 px-8 sm:px-6 lg:px-16">
+    <section id="servicios" className="p-24 bg-baseEsp">
       <div
         className="
-          max-w-9xl bg-baseEsp mx-auto rounded-3xl
+          max-w-9xl  mx-auto
           px-4 py-10
           sm:px-10 sm:py-14
           lg:px-32 lg:py-20
