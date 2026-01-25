@@ -7,27 +7,18 @@ import { proyectosReales } from "../data/onilabs";
 export default function Portfolio() {
   const sliderRef = useRef(null);
   const animationRef = useRef(null);
-
   const isDragging = useRef(false);
   const hasDragged = useRef(false);
-
   const startX = useRef(0);
   const scrollStart = useRef(0);
-
   const proyectosLoop = [...proyectosReales, ...proyectosReales];
 
   const autoScroll = () => {
     const slider = sliderRef.current;
     if (!slider || isDragging.current) return;
-
     const half = slider.scrollWidth / 2;
-
     slider.scrollLeft += 0.6;
-
-    if (slider.scrollLeft >= half) {
-      slider.scrollLeft -= half;
-    }
-
+    if (slider.scrollLeft >= half) slider.scrollLeft -= half;
     animationRef.current = requestAnimationFrame(autoScroll);
   };
 
@@ -43,27 +34,20 @@ export default function Portfolio() {
   const handleMouseDown = (e) => {
     isDragging.current = true;
     hasDragged.current = false;
-
     stopAutoScroll();
-
     startX.current = e.clientX;
     scrollStart.current = sliderRef.current.scrollLeft;
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging.current) return;
-
     const slider = sliderRef.current;
     const half = slider.scrollWidth / 2;
-
     const dx = e.clientX - startX.current;
     let next = scrollStart.current - dx;
-
     if (next < 0) next += half;
     if (next >= half) next -= half;
-
     if (Math.abs(dx) > 5) hasDragged.current = true;
-
     slider.scrollLeft = next;
   };
 
@@ -81,10 +65,8 @@ export default function Portfolio() {
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
-
     slider.scrollLeft = slider.scrollWidth / 4;
     startAutoScroll();
-
     return () => cancelAnimationFrame(animationRef.current);
   }, []);
 
@@ -121,6 +103,8 @@ export default function Portfolio() {
               className="min-w-[280px] sm:min-w-[340px] lg:min-w-[780px]"
             >
               <div className="rounded-xl overflow-hidden border border-border bg-background transition-all hover:border-primary hover:shadow-xl">
+                
+                {/* Imagen */}
                 <div className="relative aspect-video w-full">
                   <Image
                     src={proyecto.imagen}
@@ -129,36 +113,27 @@ export default function Portfolio() {
                     sizes="(max-width: 768px) 80vw, 780px"
                     className="object-cover"
                   />
-
-                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-transparent to-transparent px-10 pb-4">
-                    <div className="flex w-full items-end justify-between">
-                      <div className="relative">
-                        <div className="absolute -inset-2 bg-white/60 blur-xl rounded-lg"></div>
-
-                        <h3 className="relative text-2xl font-bold text-primary">
-                          {proyecto.nombre}
-                        </h3>
-
-                        <p className="relative mt-2 text-black font-bold text-m text-text-secondary [-webkit-text-stroke:0.4px_rgba(255,255,255,0.8)]">
-                          {proyecto.descripcion}
-                        </p>
-                      </div>
-
-                      <a
-                        href={proyecto.url || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => {
-                          if (hasDragged.current) e.preventDefault();
-                        }}
-                        className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-m font-semibold px-14 py-2 rounded-lg transition-colors whitespace-nowrap"
-                      >
-                        Ver página
-                        <span className="text-lg">→</span>
-                      </a>
-                    </div>
-                  </div>
                 </div>
+
+                {/* Barra blanca inferior */}
+                <div className="bg-white px-6 py-4">
+                  <a
+                    href={proyecto.url || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      if (hasDragged.current) e.preventDefault();
+                    }}
+                    className="block text-xl font-semibold text-text-primary hover:text-primary transition-colors"
+                  >
+                    {proyecto.nombre}
+                  </a>
+
+                  <p className="mt-1 text-sm text-text-secondary">
+                    {proyecto.descripcion}
+                  </p>
+                </div>
+
               </div>
             </div>
           ))}
