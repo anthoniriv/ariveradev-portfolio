@@ -131,7 +131,7 @@ export const equipo = [
     rol: "Developer",
     bio: "Desarrollador especializado en integraciones complejas, microservicios y optimización de sistemas existentes.",
     iniciales: "G",
-    imagen: "/eusi.jpeg",
+    imagen: "/samuel.jpeg",
   },
 ];
 
@@ -175,14 +175,14 @@ export const proyectosReales = [
   {
     id: 1,
     nombre: "Taffe Regalos",
-    imagen: "/gruporedsaludss.png",
+    imagen: "/tafferegalos.png",
     url: "https://tafferegalos.com/",
     descripcion: "Ecommerce de regalos y giftboxes con entrega express",
   },
   {
     id: 2,
     nombre: "Integra BPO",
-    imagen: "/cajatrujilloss.png",
+    imagen: "/integra.png",
     url: "https://integrasgp.com/",
     descripcion: "Plataforma corporativa de servicios BPO premium desde Latam",
   },
