@@ -7,28 +7,50 @@
   --background: #FFFFFF;
   --surface: #F8FAFC;
   --surface-alt: #F1F5F9;
-  
+
   /* Text colors */
   --text-primary: #0F172A;
   --text-secondary: #334155;
   --text-muted: #64748B;
-  
+
   /* Brand blues */
   --primary: #2563EB;
   --primary-soft: #DBEAFE;
   --primary-dark: #1E40AF;
-  
+
   /* Accents */
   --accent: #0EA5E9;
   --accent-soft: #E0F2FE;
-  
+
   /* States */
   --success: #16A34A;
   --warning: #F59E0B;
   --error: #DC2626;
-  
+
   /* Borders */
   --border: #E2E8F0;
+
+  /* ===== Motion tokens ===== */
+  --motion-fast: 150ms;
+  --motion-base: 250ms;
+  --motion-slow: 500ms;
+  --motion-stagger: 80ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-loop: cubic-bezier(0.45, 0, 0.55, 1);
+
+  --distance-reveal: 16px;
+  --distance-lift: -2px;
+  --distance-nudge: 2px;
+
+  --scale-hover: 1.02;
+  --scale-press: 0.97;
+  --scale-badge: 1.08;
+  --scale-image: 1.05;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -55,7 +77,14 @@ a {
   src: url("../../public/Burtons.otf");
 }
 
-/* Custom scrollbar */
+/* ===== Focus visible for accessibility ===== */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--primary-soft);
+}
+
+/* ===== Custom scrollbar ===== */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -71,4 +100,168 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
+}
+
+/* ==========================================================
+   Motion System — OniLabs
+   Principle: precision-lab. Motion is felt, never seen.
+   Only transform + opacity. No layout shifts.
+   ========================================================== */
+
+/* --- Keyframes --- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--distance-reveal));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* --- One-shot animation classes (Hero entrance, etc.) --- */
+
+.animate-fade-up {
+  animation: fade-up var(--motion-slow) var(--ease-out) both;
+}
+
+.animate-fade-in {
+  animation: fade-in var(--motion-slow) var(--ease-out) both;
+}
+
+.animate-scale-in {
+  animation: scale-in var(--motion-base) var(--ease-out) both;
+}
+
+.animate-scroll-bounce {
+  animation: scroll-bounce 2s var(--ease-loop) infinite;
+}
+
+/* Legacy alias — maps old class name to new keyframe */
+.animate-fade-in-up {
+  animation: fade-up var(--motion-slow) var(--ease-out) both;
+}
+
+/* --- Stagger delays (80ms intervals, max 5) --- */
+
+.stagger-1 { animation-delay: calc(var(--motion-stagger) * 1); }
+.stagger-2 { animation-delay: calc(var(--motion-stagger) * 2); }
+.stagger-3 { animation-delay: calc(var(--motion-stagger) * 3); }
+.stagger-4 { animation-delay: calc(var(--motion-stagger) * 4); }
+.stagger-5 { animation-delay: calc(var(--motion-stagger) * 5); }
+
+/* --- Scroll reveal (IntersectionObserver driven) --- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--distance-reveal));
+  transition:
+    opacity var(--motion-slow) var(--ease-out),
+    transform var(--motion-slow) var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Link underline micro-interaction --- */
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* --- Hover lift utility (cards, interactive items) --- */
+
+.hover-lift {
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(var(--distance-lift));
+}
+
+/* --- Reduced motion — everything instant or static --- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+
+  .link-underline::after {
+    transition: none;
+    transform: scaleX(1);
+    opacity: 0;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    opacity: 1;
+  }
+
+  *:focus-visible {
+    box-shadow: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }

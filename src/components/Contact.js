@@ -63,74 +63,86 @@ export default function Contact() {
     }
   };
 
+  const inputClasses =
+    "w-full py-3 bg-transparent border-b border-border text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors duration-fast ease-out-expo";
+
   return (
     <section
       id="contactanos"
-      className="font-quantico py-24 px-4 sm:px-8 bg-gradient-to-b from-zinc-50 to-slate-100"
+      className="py-20 sm:py-28 px-4 sm:px-8 bg-gradient-to-b from-surface to-surface-alt"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
-          <p className="text-3xl md:text-4xl font-medium tracking-tight text-slate-800">
-            研究 · CONTÁCTANOS
+        <div className="text-center mb-12">
+          <p className="text-primary font-semibold text-sm tracking-widest uppercase mb-3">
+            Hablemos
+          </p>
+          <p className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">
+            Contáctanos
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
-          <div className="bg-white/70 backdrop-blur border border-slate-200 rounded-2xl p-10 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.25)]">
-            <h3 className="text-xl font-medium text-slate-800 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+          {/* Form */}
+          <div className="bg-background/80 backdrop-blur border border-border rounded-2xl p-8 sm:p-10 shadow-sm">
+            <h3 className="text-xl font-semibold text-text-primary mb-8">
               Cuéntanos qué tienes en mente
             </h3>
 
             {status === "success" && (
-              <div className="mb-8 bg-emerald-100 text-emerald-700 px-4 py-3 rounded-xl text-center font-medium">
-                Mensaje enviado correctamente ✓
+              <div className="mb-8 bg-success/10 text-success px-4 py-3 rounded-xl text-center font-medium border border-success/20">
+                Mensaje enviado correctamente
               </div>
             )}
 
             {status === "error" && (
-              <div className="mb-8 bg-rose-100 text-rose-700 px-4 py-3 rounded-xl text-center font-medium">
+              <div className="mb-8 bg-error/10 text-error px-4 py-3 rounded-xl text-center font-medium border border-error/20">
                 Error al enviar el mensaje
               </div>
             )}
 
             <form
               onSubmit={handleSubmit}
-              className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10"
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8"
             >
               <div>
-                <label className="text-sm text-slate-500">Nombre</label>
+                <label htmlFor="nombre" className="text-sm text-text-muted font-medium">
+                  Nombre
+                </label>
                 <input
+                  id="nombre"
                   name="nombre"
                   value={formData.nombre}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className={inputClasses}
                 />
                 {errors.nombre && (
-                  <p className="text-xs text-rose-500 mt-2">{errors.nombre}</p>
+                  <p className="text-xs text-error mt-2">{errors.nombre}</p>
                 )}
               </div>
 
               <div>
-                <label className="text-sm text-slate-500">
+                <label htmlFor="empresa" className="text-sm text-text-muted font-medium">
                   Empresa o proyecto (opcional)
                 </label>
                 <input
+                  id="empresa"
                   name="empresa"
                   value={formData.empresa}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className={inputClasses}
                 />
               </div>
 
               <div>
-                <label className="text-sm text-slate-500">
+                <label htmlFor="estado" className="text-sm text-text-muted font-medium">
                   ¿En qué punto estás con tu idea?
                 </label>
                 <select
+                  id="estado"
                   name="estado"
                   value={formData.estado}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className={inputClasses}
                 >
                   <option value="">Selecciona una opción</option>
                   <option>Solo tengo una idea</option>
@@ -141,14 +153,15 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="text-sm text-slate-500">
+                <label htmlFor="tipo" className="text-sm text-text-muted font-medium">
                   ¿Qué te gustaría crear?
                 </label>
                 <select
+                  id="tipo"
                   name="tipo"
                   value={formData.tipo}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className={inputClasses}
                 >
                   <option value="">Selecciona una opción</option>
                   <option>Página web</option>
@@ -159,32 +172,36 @@ export default function Contact() {
               </div>
 
               <div className="md:col-span-2">
-                <label className="text-sm text-slate-500">Correo</label>
+                <label htmlFor="correo" className="text-sm text-text-muted font-medium">
+                  Correo
+                </label>
                 <input
+                  id="correo"
                   type="email"
                   name="correo"
                   value={formData.correo}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none"
+                  className={inputClasses}
                 />
                 {errors.correo && (
-                  <p className="text-xs text-rose-500 mt-2">{errors.correo}</p>
+                  <p className="text-xs text-error mt-2">{errors.correo}</p>
                 )}
               </div>
 
               <div className="md:col-span-2">
-                <label className="text-sm text-slate-500">
+                <label htmlFor="mensaje" className="text-sm text-text-muted font-medium">
                   Cuéntanos un poco más
                 </label>
                 <textarea
+                  id="mensaje"
                   name="mensaje"
                   rows={4}
                   value={formData.mensaje}
                   onChange={handleChange}
-                  className="w-full py-3 bg-transparent border-b border-slate-300 focus:border-indigo-700 focus:outline-none resize-none"
+                  className={`${inputClasses} resize-none`}
                 />
                 {errors.mensaje && (
-                  <p className="text-xs text-rose-500 mt-2">{errors.mensaje}</p>
+                  <p className="text-xs text-error mt-2">{errors.mensaje}</p>
                 )}
               </div>
 
@@ -193,76 +210,98 @@ export default function Contact() {
                   type="submit"
                   disabled={status === "loading"}
                   className={`
-                    w-full py-3 rounded-xl text-base font-medium transition
-                    ${status === "idle" && "bg-indigo-700 text-white hover:bg-indigo-800"}
-                    ${status === "loading" && "bg-slate-400 text-white cursor-not-allowed"}
-                    ${status === "success" && "bg-emerald-600 text-white"}
-                    ${status === "error" && "bg-rose-600 text-white"}
+                    group w-full py-3.5 rounded-xl text-base font-semibold transition-all duration-base ease-out-expo
+                    flex items-center justify-center gap-2
+                    ${status === "idle" ? "bg-primary text-white hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25" : ""}
+                    ${status === "loading" ? "bg-text-muted text-white cursor-not-allowed" : ""}
+                    ${status === "success" ? "bg-success text-white" : ""}
+                    ${status === "error" ? "bg-error text-white" : ""}
                   `}
                 >
-                  {status === "idle" && "Enviar mensaje"}
+                  {status === "idle" && (
+                    <>
+                      Enviar mensaje
+                      <svg className="w-5 h-5 transition-transform duration-base ease-out-expo group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </>
+                  )}
                   {status === "loading" && "Enviando..."}
-                  {status === "success" && "Mensaje enviado ✓"}
+                  {status === "success" && "Mensaje enviado"}
                   {status === "error" && "Reintentar"}
                 </button>
               </div>
             </form>
           </div>
 
-          <div className="flex flex-col gap-10">
-            <div className="bg-white/60 border border-slate-200 rounded-2xl p-10">
-              <h3 className="text-xl font-medium text-slate-800 mb-6">
+          {/* Contact info */}
+          <div className="flex flex-col gap-8">
+            <div className="bg-background/80 backdrop-blur border border-border rounded-2xl p-8 sm:p-10">
+              <h3 className="text-xl font-semibold text-text-primary mb-5">
                 Te acompañamos en todo el proceso
               </h3>
 
-              <p className="text-base text-slate-600 mb-10 leading-relaxed">
+              <p className="text-base text-text-secondary mb-8 leading-relaxed">
                 No necesitas saber de tecnología ni tener todo claro. Te
                 ayudamos a ordenar tu idea y convertirla en algo real.
               </p>
 
-              <div className="space-y-6 text-base">
+              <div className="space-y-5 text-base">
                 <a
                   href="https://wa.me/51993109998"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 hover:opacity-80 transition"
+                  className="flex items-center gap-4 text-text-secondary hover:text-primary transition-colors duration-fast ease-out-expo group"
                 >
-                  <FaWhatsapp className="w-6 h-6 text-[#25D366]" />
-                  <span className="text-slate-700">+51 993 109 998</span>
+                  <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-[#25D366]/10 group-hover:bg-[#25D366]/20 transition-colors duration-fast ease-out-expo">
+                    <FaWhatsapp className="w-5 h-5 text-[#25D366]" />
+                  </span>
+                  <span>+51 993 109 998</span>
                 </a>
 
                 <a
                   href="https://www.linkedin.com/company/onilabs-dev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 hover:opacity-80 transition"
+                  className="flex items-center gap-4 text-text-secondary hover:text-primary transition-colors duration-fast ease-out-expo group"
                 >
-                  <AiOutlineLinkedin className="w-6 h-6 text-[#0A66C2]" />
-                  <span className="text-slate-700">OniLabs</span>
+                  <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-[#0A66C2]/10 group-hover:bg-[#0A66C2]/20 transition-colors duration-fast ease-out-expo">
+                    <AiOutlineLinkedin className="w-5 h-5 text-[#0A66C2]" />
+                  </span>
+                  <span>OniLabs</span>
                 </a>
 
                 <a
                   href="mailto:contacto.onilabs@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 hover:opacity-80 transition"
+                  className="flex items-center gap-4 text-text-secondary hover:text-primary transition-colors duration-fast ease-out-expo group"
                 >
-                  <AiOutlineMail className="w-6 h-6 text-slate-500" />
-                  <span className="text-slate-700">
-                    contacto.onilabs@gmail.com
+                  <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors duration-fast ease-out-expo">
+                    <AiOutlineMail className="w-5 h-5 text-primary" />
                   </span>
+                  <span>contacto.onilabs@gmail.com</span>
                 </a>
               </div>
             </div>
 
-            <div className="border border-slate-200 rounded-2xl p-8 text-m text-slate-600">
-              <p className="mb-3 font-medium text-slate-700">
+            <div className="border border-border rounded-2xl p-8 bg-background/60">
+              <p className="mb-4 font-semibold text-text-primary">
                 ¿Qué pasa después?
               </p>
-              <ul className="space-y-2">
-                <li>• Leemos tu mensaje</li>
-                <li>• Respondemos en 24–48 horas</li>
-                <li>• Te proponemos la mejor opción</li>
+              <ul className="space-y-3 text-text-secondary">
+                <li className="flex items-center gap-3">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex-shrink-0">1</span>
+                  Leemos tu mensaje
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex-shrink-0">2</span>
+                  Respondemos en 24–48 horas
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex-shrink-0">3</span>
+                  Te proponemos la mejor opción
+                </li>
               </ul>
             </div>
           </div>

@@ -3,27 +3,38 @@ import React from "react";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Background image */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{
           backgroundImage: "url('/fondoHero1.png')",
-          filter: "brightness(0.9)",
+          filter: "brightness(0.85)",
         }}
+        aria-hidden="true"
       />
 
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/48 via-black/50 to-transparent" />
+      {/* Single gradient overlay */}
+      <div
+        className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/40 to-black/70"
+        aria-hidden="true"
+      />
 
-      <div className="absolute inset-0 z-10 bg-black/40" />
-
+      {/* Content */}
       <div className="relative z-20 max-w-5xl mx-auto px-4 text-center">
-        <h1 className="text-5xl sm:text-6xl lg:text-[5.4rem] font-black leading-[1.1] tracking-tight text-white mb-6">
-          Construimos software <br />
+        {/* Tagline */}
+        <p className="animate-fade-in-up stagger-1 inline-block text-sm sm:text-base font-semibold tracking-widest uppercase text-cyan-400 mb-6 px-4 py-1.5 rounded-full border border-cyan-400/30 bg-cyan-400/10 backdrop-blur-sm">
+          Laboratorio de programación
+        </p>
+
+        <h1 className="animate-fade-in-up stagger-2 text-4xl sm:text-5xl lg:text-[5.2rem] font-black leading-[1.08] tracking-tight text-white mb-6">
+          Construimos software{" "}
+          <br className="hidden sm:block" />
           <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent">
             para negocios reales
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+        <p className="animate-fade-in-up stagger-3 text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
           Desde microservicios hasta integraciones complejas. Creamos soluciones{" "}
           <span className="text-white font-semibold">
             tecnológicas robustas
@@ -31,25 +42,36 @@ export default function Hero() {
           que impulsan tu crecimiento digital.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+        <div className="animate-fade-in-up stagger-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href="#contactanos"
-            className="group relative px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+            className="group relative px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg overflow-hidden transition-all duration-base ease-out-expo hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] active:scale-[0.97] shadow-[0_0_20px_rgba(37,99,235,0.4)] focus-visible:outline-white"
           >
-            <span className="relative z-10">Agenda una llamada</span>
+            <span className="relative z-10 flex items-center gap-2">
+              Agenda una llamada
+              <svg className="w-5 h-5 transition-transform duration-base ease-out-expo group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
           </a>
 
           <a
             href="#portafolio"
-            className="px-8 py-4 bg-white/5 border border-white/20 text-white rounded-full font-bold text-lg backdrop-blur-md hover:bg-white/10 transition-all hover:border-white/40"
+            className="px-8 py-4 bg-white/5 border border-white/20 text-white rounded-full font-bold text-lg backdrop-blur-md hover:bg-white/10 transition-all duration-fast ease-out-expo hover:border-white/40 focus-visible:outline-white"
           >
             Ver repositorio
           </a>
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-30">
-        <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-fade-in stagger-4">
+        <div className="animate-scroll-bounce flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+          <span className="text-white/60 text-xs tracking-widest uppercase">Scroll</span>
+          <svg className="w-5 h-5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7" />
+          </svg>
+        </div>
       </div>
     </section>
   );

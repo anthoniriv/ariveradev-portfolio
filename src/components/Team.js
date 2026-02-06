@@ -1,6 +1,31 @@
+import { useEffect, useRef } from "react";
 import { equipo } from "../data/onilabs";
 
 export default function Team() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll(".team-card");
+            cards.forEach((card, i) => {
+              setTimeout(() => {
+                card.classList.add("visible");
+              }, i * 80);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="equipo"
@@ -18,34 +43,37 @@ export default function Team() {
           <div className="w-40 sm:w-64 lg:w-96 h-1 mx-auto bg-gradient-to-r from-primary to-accent rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div ref={sectionRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {equipo.map((miembro) => (
             <div
               key={miembro.id}
               className="
-                relative bg-background border border-border rounded-3xl
+                team-card reveal group relative bg-background border border-border rounded-3xl
                 p-8 lg:p-20
                 lg:min-h-[440px]
                 flex flex-col items-center text-center
-                shadow-sm
+                shadow-sm overflow-hidden
                 select-none cursor-default
-                transition-all duration-150 ease-out
-                hover:border-primary/50 hover:shadow-xl hover:-translate-y-2
+                transition-all duration-base ease-out-expo
+                hover:border-primary/50 hover:shadow-xl hover:shadow-primary/8 hover:-translate-y-0.5
+                focus-within:border-primary/50 focus-within:shadow-xl
               "
             >
               <div
                 className="
-                  absolute -top-16 lg:-top-20
+                  absolute -top-16 lg:-top-20 left-1/2 -translate-x-1/2
                   w-52 h-52 lg:w-72 lg:h-72
                   bg-primary/20 rounded-full blur-3xl
-                  opacity-0
-                  transition-opacity duration-150
+                  opacity-0 z-0
+                  transition-opacity duration-base ease-out-expo
                   group-hover:opacity-100
+                  group-focus-within:opacity-100
                   pointer-events-none
                 "
+                aria-hidden="true"
               />
 
-              <div className="relative w-28 h-48 lg:w-40 lg:h-64 mb-6 lg:mb-10">
+              <div className="relative z-10 w-28 h-48 lg:w-40 lg:h-64 mb-6 lg:mb-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent blur-xl opacity-30 rounded-full" />
                 <div className="relative w-full h-full rounded-full overflow-hidden shadow-md bg-surface">
                   <img
@@ -56,15 +84,15 @@ export default function Team() {
                 </div>
               </div>
 
-              <h3 className="text-lg lg:text-xl font-bold text-text-primary mb-1">
+              <h3 className="relative z-10 text-lg lg:text-xl font-bold text-text-primary mb-1">
                 {miembro.nombre}
               </h3>
 
-              <p className="text-accent mb-4 lg:mb-6 font-semibold text-sm lg:text-base">
+              <p className="relative z-10 text-accent mb-4 lg:mb-6 font-semibold text-sm lg:text-base">
                 {miembro.rol}
               </p>
 
-              <p className="text-text-secondary text-sm lg:text-base font-medium leading-relaxed">
+              <p className="relative z-10 text-text-secondary text-sm lg:text-base font-medium leading-relaxed">
                 {miembro.bio}
               </p>
             </div>

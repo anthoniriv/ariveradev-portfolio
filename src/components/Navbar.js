@@ -3,73 +3,73 @@ import { useState } from "react";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navLinks = [
+    { href: "#servicios", label: "Especialidades" },
+    { href: "#portafolio", label: "Repositorio" },
+    { href: "#proceso", label: "Metodología" },
+    { href: "#equipo", label: "Colaboradores" },
+  ];
+
   return (
     <nav
       className="
         fixed top-0 w-full z-50
-        bg-gradient-to-b
-        from-background/95
-        via-surface/90
-        to-surface/80
-        backdrop-blur-md
-        border-b border-border
+        bg-background/90
+        backdrop-blur-lg
+        border-b border-border/80
         py-2 px-4 sm:px-6 lg:px-8
       "
+      role="navigation"
+      aria-label="Navegación principal"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0 flex items-center gap-3">
+          <a
+            href="#"
+            className="flex-shrink-0 flex items-center gap-3"
+            aria-label="OniLabs - Inicio"
+          >
             <img
               src="/logo.png"
-              alt="OniLabs logo"
-              className="h-12 w-12 object-contain"
+              alt=""
+              className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
             />
-            <a
-              href="#"
+            <span
               className="
-                text-2xl font-bold
+                text-xl sm:text-2xl font-bold
                 bg-gradient-to-r from-primary to-accent
                 bg-clip-text text-transparent
               "
             >
               OniLabs
-            </a>
-          </div>
+            </span>
+          </a>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex items-center space-x-8 font-semibold">
-            <a
-              href="#servicios"
-              className="text-text-secondary hover:text-primary transition"
-            >
-              Especialidades
-            </a>
-            <a
-              href="#portafolio"
-              className="text-text-secondary hover:text-primary transition"
-            >
-              Repositorio
-            </a>
-            <a
-              href="#proceso"
-              className="text-text-secondary hover:text-primary transition"
-            >
-              Metodología
-            </a>
-            <a
-              href="#equipo"
-              className="text-text-secondary hover:text-primary transition"
-            >
-              Colaboradores
-            </a>
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="
+                  link-underline relative px-4 py-2 text-sm font-semibold
+                  text-text-secondary hover:text-primary
+                  transition-colors duration-fast ease-out-expo
+                  rounded-lg
+                "
+              >
+                {link.label}
+              </a>
+            ))}
 
             <a
               href="#contactanos"
               className="
-                bg-primary text-white
-                px-6 py-2 rounded-lg font-bold
+                ml-3 bg-primary text-white
+                px-5 py-2.5 rounded-lg font-bold text-sm
                 hover:bg-primary-dark
-                transition
+                transition-all duration-fast ease-out-expo
+                hover:shadow-md hover:shadow-primary/20
               "
             >
               Contáctanos
@@ -80,8 +80,9 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-              className="text-text-primary"
+              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isMenuOpen}
+              className="relative w-10 h-10 flex items-center justify-center rounded-lg text-text-primary hover:bg-surface transition-colors"
             >
               <svg
                 className="w-6 h-6"
@@ -109,58 +110,44 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div
-            className="
-              md:hidden absolute top-full left-0 w-full
-              bg-surface/95 backdrop-blur-md
-              border-t border-border
-              shadow-xl py-4 space-y-4
-            "
-          >
-            <a
-              href="#servicios"
-              className="block px-6 text-text-secondary hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Especialidades
-            </a>
-            <a
-              href="#portafolio"
-              className="block px-6 text-text-secondary hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Repositorio
-            </a>
-            <a
-              href="#proceso"
-              className="block px-6 text-text-secondary hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Metodología
-            </a>
-            <a
-              href="#equipo"
-              className="block px-6 text-text-secondary hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Colaboradores
-            </a>
-            <a
-              href="#contactanos"
-              className="
-                block mx-6
-                bg-primary text-white
-                px-6 py-2 rounded-lg text-center font-bold
-                hover:bg-primary-dark transition
-              "
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contáctanos
-            </a>
+        {/* Mobile menu with transition */}
+        <div
+          className={`
+            md:hidden overflow-hidden
+            transition-all duration-base ease-out-expo
+            ${isMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}
+          `}
+          aria-hidden={!isMenuOpen}
+        >
+          <div className="py-4 space-y-1 border-t border-border/50">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block px-4 py-3 text-text-secondary hover:text-primary hover:bg-primary/5 rounded-lg transition-colors duration-fast ease-out-expo font-medium"
+                onClick={() => setIsMenuOpen(false)}
+                tabIndex={isMenuOpen ? 0 : -1}
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="pt-2 px-4">
+              <a
+                href="#contactanos"
+                className="
+                  block
+                  bg-primary text-white
+                  px-6 py-3 rounded-lg text-center font-bold
+                  hover:bg-primary-dark transition-colors duration-fast ease-out-expo
+                "
+                onClick={() => setIsMenuOpen(false)}
+                tabIndex={isMenuOpen ? 0 : -1}
+              >
+                Contáctanos
+              </a>
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
