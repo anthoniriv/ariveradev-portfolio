@@ -228,4 +228,18 @@ export const proyectosReales = [
     url: "https://play.google.com/store/apps/details?id=com.impuestosperu&hl=es_PE",
     descripcion: "Aplicación móvil para cálculo de impuestos",
   },
+  {
+    id: 9,
+    nombre: "BKS Moda",
+    imagen: "/557shots_so.png",
+    url: "https://bksmoda.com/",
+    descripcion: "Ecommerce de moda y accesorios",
+  },
+  {
+    id: 10,
+    nombre: "Ecoshipperu",
+    imagen: "/42shots_so.png",
+    url: "https://www.ecoshipperu.com/",
+    descripcion: "Landing page para empresa de logística y envíos",
+  }
 ];
