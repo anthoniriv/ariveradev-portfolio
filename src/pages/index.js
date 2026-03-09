@@ -7,6 +7,7 @@ import Process from "../components/Process";
 import Team from "../components/Team";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import PromoModal from "../components/PromoModal";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <PromoModal />
       <div className="min-h-screen bg-background">
         <Navbar />
         <main>
