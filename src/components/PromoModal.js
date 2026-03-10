@@ -4,16 +4,14 @@ export default function PromoModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsOpen(true), 800);
-    return () => clearTimeout(timer);
+    setIsOpen(true);
   }, []);
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      onClick={() => setIsOpen(false)}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in" />
