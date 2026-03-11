@@ -1,17 +1,20 @@
 import React from "react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background image */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
-        style={{
-          backgroundImage: "url('/fondoHero1.png')",
-          filter: "brightness(0.85)",
-        }}
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 z-0 scale-105" aria-hidden="true">
+        <Image
+          src="/fondoHero1.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center brightness-[0.85]"
+        />
+      </div>
 
       {/* Single gradient overlay */}
       <div

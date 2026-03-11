@@ -71,7 +71,6 @@ export default function Home() {
           content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preload" as="image" href="/fondoHero1.png" />
 
         {/* Canonical & Hreflang */}
         <link rel="canonical" href={SITE_URL} />
