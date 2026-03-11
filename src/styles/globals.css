@@ -224,6 +224,38 @@ a {
   transform: translateY(var(--distance-lift));
 }
 
+/* ===== Performance: content-visibility for below-the-fold sections ===== */
+
+section:not(:first-of-type) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ===== Mobile: touch targets & legibility ===== */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 17px;
+  }
+
+  button,
+  [role="button"],
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .text-xs {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+  }
+
+  .text-sm {
+    font-size: 0.9375rem;
+    line-height: 1.375rem;
+  }
+}
+
 /* --- Reduced motion — everything instant or static --- */
 
 @media (prefers-reduced-motion: reduce) {

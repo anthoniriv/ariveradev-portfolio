@@ -39,7 +39,9 @@ export default function Footer() {
             <a href="#" className="inline-flex items-center gap-3 mb-3" aria-label="OniLabs - Inicio">
               <img
                 src="/logo.png"
-                alt=""
+                alt="OniLabs logo"
+                width={48}
+                height={48}
                 className="h-12 w-12 object-contain"
               />
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">

@@ -79,6 +79,9 @@ export default function Team() {
                   <img
                     src={miembro.imagen}
                     alt={miembro.nombre}
+                    loading="lazy"
+                    width={160}
+                    height={256}
                     className="w-full h-full object-cover object-top"
                   />
                 </div>

@@ -9,17 +9,97 @@ import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import PromoModal from "../components/PromoModal";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://onilabs.dev";
+const TITLE = "Onilabs - Laboratorio de Programación";
+const DESCRIPTION =
+  "Onilabs: Desarrollo web, aplicaciones móviles, microservicios, integraciones y ecommerce WordPress/WooCommerce. Soluciones escalables para tu negocio.";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Onilabs",
+      url: SITE_URL,
+      description: DESCRIPTION,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "contacto.onilabs@gmail.com",
+        contactType: "customer service",
+        availableLanguage: "Spanish",
+      },
+      sameAs: [
+        "https://www.linkedin.com/company/onilabs-dev",
+        "https://github.com/OnichanDevTeam",
+        "https://wa.me/51993109998",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Onilabs",
+      url: SITE_URL,
+      inLanguage: "es",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/#webpage`,
+      url: SITE_URL,
+      name: TITLE,
+      description: DESCRIPTION,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+      inLanguage: "es",
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Onilabs - Laboratorio de Programación</title>
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <meta
-          name="description"
-          content="Onilabs: Desarrollo web, aplicaciones móviles, microservicios, integraciones y ecommerce WordPress/WooCommerce. Soluciones escalables para tu negocio."
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preload" as="image" href="/fondoHero1.png" />
+
+        {/* Canonical & Hreflang */}
+        <link rel="canonical" href={SITE_URL} />
+        <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        <link rel="alternate" hrefLang="es" href={SITE_URL} />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:image" content={`${SITE_URL}/logo.png`} />
+        <meta property="og:locale" content="es_PE" />
+        <meta property="og:site_name" content="Onilabs" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
+        <meta name="twitter:image" content={`${SITE_URL}/logo.png`} />
+
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
       </Head>
 
       <PromoModal />

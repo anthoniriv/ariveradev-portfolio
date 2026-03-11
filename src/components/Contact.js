@@ -76,9 +76,9 @@ export default function Contact() {
           <p className="text-primary font-semibold text-sm tracking-widest uppercase mb-3">
             Hablemos
           </p>
-          <p className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">
             Contáctanos
-          </p>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">

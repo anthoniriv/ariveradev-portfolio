@@ -31,7 +31,9 @@ export default function Navbar() {
           >
             <img
               src="/logo.png"
-              alt=""
+              alt="OniLabs logo"
+              width={48}
+              height={48}
               className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
             />
             <span
