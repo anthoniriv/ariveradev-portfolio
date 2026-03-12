@@ -7,6 +7,18 @@ export default function PromoModal() {
     setIsOpen(true);
   }, []);
 
+  // Bloquear scroll vertical cuando el modal está abierto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (

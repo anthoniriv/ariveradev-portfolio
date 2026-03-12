@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AiOutlineLinkedin, AiOutlineMail } from "react-icons/ai";
-import { FaWhatsapp } from "react-icons/fa";
+// import { FaWhatsapp } from "react-icons/fa"; // comentado para uso futuro
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -247,6 +247,7 @@ export default function Contact() {
               </p>
 
               <div className="space-y-5 text-base">
+                {/* WhatsApp - comentado para uso futuro
                 <a
                   href="https://wa.me/51993109998"
                   target="_blank"
@@ -258,6 +259,7 @@ export default function Contact() {
                   </span>
                   <span>+51 993 109 998</span>
                 </a>
+                */}
 
                 <a
                   href="https://www.linkedin.com/company/onilabs-dev"

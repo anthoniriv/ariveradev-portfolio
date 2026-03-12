@@ -1,5 +1,5 @@
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
-import { FaWhatsapp } from "react-icons/fa";
+// import { FaWhatsapp } from "react-icons/fa"; // comentado para uso futuro
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -23,11 +23,12 @@ export default function Footer() {
       label: "GitHub",
       icon: AiFillGithub,
     },
-    {
-      href: "https://wa.me/51993109998",
-      label: "WhatsApp",
-      icon: FaWhatsapp,
-    },
+    // WhatsApp - comentado para uso futuro
+    // {
+    //   href: "https://wa.me/51993109998",
+    //   label: "WhatsApp",
+    //   icon: FaWhatsapp,
+    // },
   ];
 
   return (
