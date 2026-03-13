@@ -224,12 +224,12 @@ a {
   transform: translateY(var(--distance-lift));
 }
 
-/* ===== Performance: content-visibility for below-the-fold sections ===== */
-
-section:not(:first-of-type) {
+/* ===== Performance: content-visibility deshabilitado — causaba que secciones
+   no renderizaran en mobile y las animaciones .reveal no se dispararan ===== */
+/* section:not(:first-of-type) {
   content-visibility: auto;
   contain-intrinsic-size: auto 600px;
-}
+} */
 
 /* ===== Mobile: touch targets & legibility ===== */
 
@@ -239,8 +239,7 @@ section:not(:first-of-type) {
   }
 
   button,
-  [role="button"],
-  a {
+  [role="button"] {
     min-height: 44px;
     min-width: 44px;
   }

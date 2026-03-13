@@ -7,15 +7,29 @@ export default function PromoModal() {
     setIsOpen(true);
   }, []);
 
-  // Bloquear scroll vertical cuando el modal está abierto
+  // Bloquear scroll vertical cuando el modal está abierto (compatible con mobile)
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
     } else {
-      document.body.style.overflow = "";
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
     return () => {
-      document.body.style.overflow = "";
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      if (scrollY) window.scrollTo(0, parseInt(scrollY) * -1);
     };
   }, [isOpen]);
 
