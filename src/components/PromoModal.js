@@ -1,43 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function PromoModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const overlayRef = useRef(null);
 
   useEffect(() => {
     setIsOpen(true);
   }, []);
 
-  // Bloquear scroll vertical cuando el modal está abierto (compatible con mobile)
+  // Bloquear scroll vertical en mobile sin tocar body styles
   useEffect(() => {
-    if (isOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-    }
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      if (scrollY) window.scrollTo(0, parseInt(scrollY) * -1);
-    };
+    if (!isOpen) return;
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+
+    const prevent = (e) => e.preventDefault();
+    overlay.addEventListener("touchmove", prevent, { passive: false });
+    return () => overlay.removeEventListener("touchmove", prevent);
   }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      ref={overlayRef}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 touch-none overscroll-none"
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in" />
