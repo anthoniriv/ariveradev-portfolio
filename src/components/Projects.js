@@ -17,14 +17,14 @@ export default function Projects() {
           {proyectosEjemplo.map((proyecto) => (
             <div
               key={proyecto.id}
-              className="bg-background border border-border rounded-xl p-6 shadow-sm hover:border-accent hover:shadow-md transition-all transform hover:-translate-y-1 flex flex-col justify-between min-h-[340px]"
+              className="bg-background border border-border rounded-xl p-6 shadow-sm hover:border-accent hover:shadow-md transition-all transform hover:-translate-y-1 flex flex-col justify-between h-[380px] overflow-hidden"
             >
               <div>
                 <h3 className="text-xl font-semibold mb-3 text-text-primary">
                   {proyecto.titulo}
                 </h3>
 
-                <p className="text-text-secondary mb-4 text-sm">
+                <p className="text-text-secondary mb-4 text-sm line-clamp-3">
                   <span className="font-semibold text-accent">Objetivo:</span>{" "}
                   {proyecto.objetivo}
                 </p>
@@ -45,7 +45,7 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <p className="text-sm text-text-primary mb-6">
+                <p className="text-sm text-text-primary mb-6 line-clamp-2">
                   <span className="font-semibold text-primary">Resultado:</span>{" "}
                   {proyecto.resultado}
                 </p>
