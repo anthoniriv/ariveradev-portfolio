@@ -14,7 +14,7 @@ export default function Portfolio() {
   const currentX = useRef(0);
   const dragStartX = useRef(0);
   const animationRef = useRef(null);
-  const speedRef = useRef(0.5);
+  const speedRef = useRef(1);
 
   const DRAG_THRESHOLD = 5;
   const DIRECTION_LOCK_THRESHOLD = 8;
