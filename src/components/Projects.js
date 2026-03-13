@@ -17,7 +17,7 @@ export default function Projects() {
           {proyectosEjemplo.map((proyecto) => (
             <div
               key={proyecto.id}
-              className="bg-background border border-border rounded-xl p-6 shadow-sm hover:border-accent hover:shadow-md transition-all transform hover:-translate-y-1 flex flex-col justify-between"
+              className="bg-background border border-border rounded-xl p-6 shadow-sm hover:border-accent hover:shadow-md transition-all transform hover:-translate-y-1 flex flex-col justify-between min-h-[340px]"
             >
               <div>
                 <h3 className="text-xl font-semibold mb-3 text-text-primary">
