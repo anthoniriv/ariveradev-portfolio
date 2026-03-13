@@ -13,13 +13,13 @@ export default function Team() {
             cards.forEach((card, i) => {
               setTimeout(() => {
                 card.classList.add("visible");
-              }, i * 80);
+              }, i * 60);
             });
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -63,7 +63,8 @@ export default function Team() {
                 className="
                   absolute -top-16 lg:-top-20 left-1/2 -translate-x-1/2
                   w-52 h-52 lg:w-72 lg:h-72
-                  bg-primary/20 rounded-full blur-3xl
+                  bg-primary/20 rounded-full
+                  hidden lg:block blur-3xl
                   opacity-0 z-0
                   transition-opacity duration-base ease-out-expo
                   group-hover:opacity-100
@@ -74,7 +75,7 @@ export default function Team() {
               />
 
               <div className="relative z-10 w-28 h-48 lg:w-40 lg:h-64 mb-6 lg:mb-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent blur-xl opacity-30 rounded-full" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent hidden lg:block blur-xl opacity-30 rounded-full" />
                 <div className="relative w-full h-full rounded-full overflow-hidden shadow-md bg-surface">
                   <img
                     src={miembro.imagen}

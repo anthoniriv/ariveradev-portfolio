@@ -16,13 +16,13 @@ export default function Process() {
             items.forEach((item, i) => {
               setTimeout(() => {
                 item.classList.add("visible");
-              }, i * 80);
+              }, i * 60);
             });
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);

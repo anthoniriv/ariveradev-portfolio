@@ -34,7 +34,7 @@
   --motion-fast: 150ms;
   --motion-base: 250ms;
   --motion-slow: 500ms;
-  --motion-stagger: 80ms;
+  --motion-stagger: 60ms;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-loop: cubic-bezier(0.45, 0, 0.55, 1);
@@ -146,14 +146,17 @@ a {
 
 .animate-fade-up {
   animation: fade-up var(--motion-slow) var(--ease-out) both;
+  will-change: opacity, transform;
 }
 
 .animate-fade-in {
   animation: fade-in var(--motion-slow) var(--ease-out) both;
+  will-change: opacity;
 }
 
 .animate-scale-in {
   animation: scale-in var(--motion-base) var(--ease-out) both;
+  will-change: opacity, transform;
 }
 
 .animate-scroll-bounce {
@@ -178,14 +181,16 @@ a {
 .reveal {
   opacity: 0;
   transform: translateY(var(--distance-reveal));
+  will-change: opacity, transform;
   transition:
-    opacity var(--motion-slow) var(--ease-out),
-    transform var(--motion-slow) var(--ease-out);
+    opacity var(--motion-base) var(--ease-out),
+    transform var(--motion-base) var(--ease-out);
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 /* --- Link underline micro-interaction --- */

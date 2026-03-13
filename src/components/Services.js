@@ -13,13 +13,13 @@ export default function Services() {
             cards.forEach((card, i) => {
               setTimeout(() => {
                 card.classList.add("visible");
-              }, i * 80);
+              }, i * 60);
             });
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);

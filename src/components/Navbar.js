@@ -115,12 +115,13 @@ export default function Navbar() {
         {/* Mobile menu with transition */}
         <div
           className={`
-            md:hidden overflow-hidden
-            transition-all duration-base ease-out-expo
-            ${isMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}
+            md:hidden grid
+            transition-[grid-template-rows,opacity] duration-base ease-out-expo
+            ${isMenuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}
           `}
           aria-hidden={!isMenuOpen}
         >
+          <div className="overflow-hidden">
           <div className="py-4 space-y-1 border-t border-border/50">
             {navLinks.map((link) => (
               <a
@@ -148,6 +149,7 @@ export default function Navbar() {
                 Contáctanos
               </a>
             </div>
+          </div>
           </div>
         </div>
       </div>
