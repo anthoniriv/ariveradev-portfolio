@@ -14,7 +14,7 @@ export default function Portfolio() {
   const scrollStart = useRef(0);
   const directionLocked = useRef(null);
   const prefersReducedMotion = useRef(false);
-  const proyectosLoop = [...proyectosReales, ...proyectosReales];
+  const proyectosLoop = [...proyectosReales, ...proyectosReales, ...proyectosReales];
 
   const DRAG_THRESHOLD = 5;
   const DIRECTION_LOCK_THRESHOLD = 8;
@@ -22,9 +22,9 @@ export default function Portfolio() {
   const autoScroll = () => {
     const slider = sliderRef.current;
     if (!slider || isDragging.current) return;
-    const half = slider.scrollWidth / 2;
-    slider.scrollLeft += 0.6;
-    if (slider.scrollLeft >= half) slider.scrollLeft -= half;
+    const third = slider.scrollWidth / 3;
+    slider.scrollLeft += 0.8;
+    if (slider.scrollLeft >= third * 2) slider.scrollLeft -= third;
     animationRef.current = requestAnimationFrame(autoScroll);
   };
 
@@ -41,10 +41,10 @@ export default function Portfolio() {
   const applyScroll = (dx) => {
     const slider = sliderRef.current;
     if (!slider) return;
-    const half = slider.scrollWidth / 2;
+    const third = slider.scrollWidth / 3;
     let next = scrollStart.current - dx;
-    if (next < 0) next += half;
-    if (next >= half) next -= half;
+    if (next < 0) next += third;
+    if (next >= third * 2) next -= third;
     if (Math.abs(dx) > DRAG_THRESHOLD) hasDragged.current = true;
     slider.scrollLeft = next;
   };
@@ -121,7 +121,7 @@ export default function Portfolio() {
 
     const slider = sliderRef.current;
     if (!slider) return;
-    slider.scrollLeft = slider.scrollWidth / 4;
+    slider.scrollLeft = slider.scrollWidth / 3;
 
     // Passive: false needed so horizontal touchmove can call preventDefault
     slider.addEventListener("touchmove", handleTouchMove, { passive: false });
