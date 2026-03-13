@@ -178,7 +178,7 @@ export default function Portfolio() {
           {proyectosLoop.map((proyecto, index) => (
             <div
               key={index}
-              className="min-w-[280px] sm:min-w-[340px] lg:min-w-[780px] flex-shrink-0"
+              className="w-[280px] sm:w-[340px] lg:w-[780px] flex-shrink-0"
             >
               <div className="group rounded-2xl overflow-hidden border border-border bg-background transition-all duration-base ease-out-expo hover:border-primary/40 hover:shadow-xl hover:shadow-primary/8">
                 {/* Image with hover overlay */}
@@ -199,8 +199,8 @@ export default function Portfolio() {
                 </div>
 
                 {/* Info bar */}
-                <div className="bg-white px-6 py-4 flex items-center justify-between">
-                  <div>
+                <div className="bg-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between h-[72px] sm:h-[80px]">
+                  <div className="min-w-0 flex-1">
                     <a
                       href={proyecto.url || "#"}
                       target="_blank"
@@ -208,11 +208,11 @@ export default function Portfolio() {
                       onClick={(e) => {
                         if (hasDragged.current) e.preventDefault();
                       }}
-                      className="link-underline inline-block text-lg sm:text-xl font-semibold text-text-primary hover:text-primary transition-colors duration-fast ease-out-expo"
+                      className="link-underline inline-block text-base sm:text-xl font-semibold text-text-primary hover:text-primary transition-colors duration-fast ease-out-expo truncate max-w-full"
                     >
                       {proyecto.nombre}
                     </a>
-                    <p className="mt-1 text-sm text-text-secondary">
+                    <p className="mt-1 text-xs sm:text-sm text-text-secondary truncate">
                       {proyecto.descripcion}
                     </p>
                   </div>
