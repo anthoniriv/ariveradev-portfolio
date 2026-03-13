@@ -178,7 +178,7 @@ export default function Portfolio() {
           {proyectosLoop.map((proyecto, index) => (
             <div
               key={index}
-              className="w-[280px] sm:w-[340px] lg:w-[780px] flex-shrink-0"
+              className="w-[308px] sm:w-[374px] lg:w-[858px] flex-shrink-0"
             >
               <div className="group rounded-2xl overflow-hidden border border-border bg-background transition-all duration-base ease-out-expo hover:border-primary/40 hover:shadow-xl hover:shadow-primary/8">
                 {/* Image with hover overlay */}
