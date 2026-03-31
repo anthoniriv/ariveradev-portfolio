@@ -34,10 +34,9 @@ export default function PromoModal() {
         className="relative w-full max-w-md rounded-2xl overflow-hidden animate-scale-in"
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: "#0a0f0a",
-          border: "1px solid rgba(34, 197, 94, 0.15)",
-          boxShadow:
-            "0 0 60px rgba(57, 255, 20, 0.08), 0 25px 50px rgba(0, 0, 0, 0.5)",
+          background: "#0A0A0A",
+          border: "1px solid #262626",
+          boxShadow: "0 25px 50px rgba(0, 0, 0, 0.8)",
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
         }}
       >
@@ -45,28 +44,28 @@ export default function PromoModal() {
         <div
           className="absolute top-0 left-0 right-0 h-[2px]"
           style={{
-            background: "linear-gradient(90deg, transparent, #39FF14, transparent)",
+            background: "linear-gradient(90deg, transparent, #Fb2c36, transparent)",
           }}
         />
 
         {/* Header */}
-        <div className="relative px-6 pt-8 pb-6 text-center">
+        <div className="relative px-6 pt-8 pb-3 text-center">
           {/* Close button */}
           <button
             onClick={() => setIsOpen(false)}
             className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-lg transition-all duration-200"
             style={{
-              background: "rgba(148, 163, 148, 0.08)",
-              color: "#64796b",
-              border: "1px solid rgba(148, 163, 148, 0.08)",
+              background: "transparent",
+              color: "#A3A3A3",
+              border: "1px solid #262626",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "rgba(34, 197, 94, 0.3)";
-              e.currentTarget.style.color = "#f0fdf4";
+              e.currentTarget.style.borderColor = "#Fb2c36";
+              e.currentTarget.style.color = "#FFFFFF";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(148, 163, 148, 0.08)";
-              e.currentTarget.style.color = "#64796b";
+              e.currentTarget.style.borderColor = "#262626";
+              e.currentTarget.style.color = "#A3A3A3";
             }}
             aria-label="Cerrar"
           >
@@ -78,16 +77,16 @@ export default function PromoModal() {
           {/* Decorative glow */}
           <div
             className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-36 rounded-full blur-3xl pointer-events-none"
-            style={{ background: "radial-gradient(circle, rgba(57, 255, 20, 0.12), transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, rgba(251, 44, 54, 0.12), transparent 70%)" }}
           />
 
           {/* Badge */}
           <span
             className="relative inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider uppercase rounded-full"
             style={{
-              color: "#22c55e",
-              background: "rgba(34, 197, 94, 0.1)",
-              border: "1px solid rgba(34, 197, 94, 0.2)",
+              color: "#E5E5E5",
+              background: "rgba(251, 44, 54, 0.12)",
+              border: "1px solid rgba(251, 44, 54, 0.3)",
             }}
           >
             Nuevo
@@ -95,53 +94,55 @@ export default function PromoModal() {
 
           {/* Title */}
           <h2
-            className="relative text-2xl sm:text-3xl font-bold tracking-tight mb-2"
-            style={{ color: "#f0fdf4" }}
+            className="relative text-3xl sm:text-4xl font-bold tracking-tight mb-1"
+            style={{ color: "#FFFFFF" }}
           >
-            OniGrowth
+            Versus{" "}
+            <span style={{ color: "#Fb2c36" }}>Electoral Perú</span>
           </h2>
           <p
             className="relative text-sm font-medium"
-            style={{ color: "#39FF14" }}
+            style={{ color: "#A3A3A3" }}
           >
-            Growth-ready prompt systems
+            Monitoreo electoral con fuentes verificadas
           </p>
         </div>
 
         {/* Divider */}
-        <div className="mx-6" style={{ borderTop: "1px solid rgba(148, 163, 148, 0.08)" }} />
+        <div className="mx-6" style={{ borderTop: "1px solid #262626" }} />
 
         {/* Body */}
-        <div className="px-6 py-6 text-center">
+        <div className="px-6 pt-3 pb-6 text-center">
           <p
             className="text-sm sm:text-base leading-relaxed mb-6"
-            style={{ color: "#94a39b" }}
+            style={{ color: "#E5E5E5" }}
           >
-            Obtene un sistema de prompts listo para el crecimiento de tu negocio
-            — outputs que podes publicar, vender o automatizar.
+            Monitoreo automático de{" "}
+            <strong style={{ color: "#FFFFFF" }}>36 candidatos</strong>{" "}
+            presidenciales. Acusaciones, denuncias y sentencias con fuentes verificadas de 20 medios.
           </p>
 
           {/* CTA Button */}
           <a
-            href="https://onigrowth.com"
+            href="https://www.versuselectoral.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center gap-2 w-full px-6 py-3 font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5"
             style={{
-              background: "#22c55e",
-              color: "#0a0f0a",
-              boxShadow: "0 4px 14px rgba(34, 197, 94, 0.25)",
+              background: "#Fb2c36",
+              color: "#FFFFFF",
+              boxShadow: "0 4px 14px rgba(251, 44, 54, 0.3)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.filter = "brightness(1.1)";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(57, 255, 20, 0.3)";
+              e.currentTarget.style.background = "#dc2626";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(251, 44, 54, 0.45)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.filter = "brightness(1)";
-              e.currentTarget.style.boxShadow = "0 4px 14px rgba(34, 197, 94, 0.25)";
+              e.currentTarget.style.background = "#Fb2c36";
+              e.currentTarget.style.boxShadow = "0 4px 14px rgba(251, 44, 54, 0.3)";
             }}
           >
-            Visitar OniGrowth
+            Visita Versus Electoral Perú
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 8h10M9 4l4 4-4 4" />
             </svg>
@@ -150,9 +151,9 @@ export default function PromoModal() {
           <button
             onClick={() => setIsOpen(false)}
             className="mt-4 text-xs transition-colors duration-150"
-            style={{ color: "#64796b" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#f0fdf4")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#64796b")}
+            style={{ color: "#A3A3A3" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#A3A3A3")}
           >
             Ahora no, gracias
           </button>

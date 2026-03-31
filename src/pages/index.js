@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
@@ -8,6 +10,7 @@ import Team from "../components/Team";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import PromoModal from "../components/PromoModal";
+import FeaturedProjects from "@/components/FeaturedProjects";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://onilabs.dev";
 const TITLE = "Onilabs - Laboratorio de Programación";
@@ -61,6 +64,17 @@ const structuredData = {
 };
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (el) {
+      setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
+    }
+  }, [router.asPath]);
+
   return (
     <>
       <Head>
@@ -107,7 +121,7 @@ export default function Home() {
         <main>
           <Hero />
           <Services />
-          <Portfolio />
+          <FeaturedProjects />
           <Process />
           <Team />
           <Contact />

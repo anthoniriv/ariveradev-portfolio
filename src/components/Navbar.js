@@ -1,13 +1,26 @@
 import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+
+  const handleNavClick = (e, href) => {
+    const hash = href.replace("/#", "#");
+    if (router.pathname === "/") {
+      e.preventDefault();
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMenuOpen(false);
+  };
 
   const navLinks = [
-    { href: "#servicios", label: "Especialidades" },
-    { href: "#portafolio", label: "Repositorio" },
-    { href: "#proceso", label: "Metodología" },
-    { href: "#equipo", label: "Colaboradores" },
+    { href: "/#servicios", label: "Especialidades" },
+    { href: "/#proyectos", label: "Repositorio" },
+    { href: "/#proceso", label: "Metodología" },
+    { href: "/#equipo", label: "Colaboradores" },
   ];
 
   return (
@@ -24,10 +37,16 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center h-16">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="flex-shrink-0 flex items-center gap-3"
             aria-label="OniLabs - Inicio"
+            onClick={(e) => {
+              if (router.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
           >
             <img
               src="/logo.png"
@@ -45,14 +64,15 @@ export default function Navbar() {
             >
               OniLabs
             </span>
-          </a>
+          </Link>
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="
                   link-underline relative px-4 py-2 text-sm font-semibold
                   text-text-secondary hover:text-primary
@@ -61,11 +81,12 @@ export default function Navbar() {
                 "
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
 
-            <a
-              href="#contactanos"
+            <Link
+              href="/#contactanos"
+              onClick={(e) => handleNavClick(e, "/#contactanos")}
               className="
                 ml-3 bg-primary text-white
                 px-5 py-2.5 rounded-lg font-bold text-sm
@@ -75,7 +96,7 @@ export default function Navbar() {
               "
             >
               Contáctanos
-            </a>
+            </Link>
           </div>
 
           {/* Mobile button */}
@@ -124,30 +145,30 @@ export default function Navbar() {
           <div className="overflow-hidden">
           <div className="py-4 space-y-1 border-t border-border/50">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="block px-4 py-3 text-text-secondary hover:text-primary hover:bg-primary/5 rounded-lg transition-colors duration-fast ease-out-expo font-medium"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 tabIndex={isMenuOpen ? 0 : -1}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <div className="pt-2 px-4">
-              <a
-                href="#contactanos"
+              <Link
+                href="/#contactanos"
                 className="
                   block
                   bg-primary text-white
                   px-6 py-3 rounded-lg text-center font-bold
                   hover:bg-primary-dark transition-colors duration-fast ease-out-expo
                 "
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, "/#contactanos")}
                 tabIndex={isMenuOpen ? 0 : -1}
               >
                 Contáctanos
-              </a>
+              </Link>
             </div>
           </div>
           </div>

@@ -178,6 +178,7 @@ export const proyectosReales = [
     imagen: "/tafferegalos.png",
     url: "https://tafferegalos.com/",
     descripcion: "Ecommerce de regalos y giftboxes con entrega express",
+    stack: ["WooCommerce", "WordPress", "PHP", "Stripe"],
   },
   {
     id: 2,
@@ -185,6 +186,7 @@ export const proyectosReales = [
     imagen: "/integra.png",
     url: "https://integrasgp.com/",
     descripcion: "Plataforma corporativa de servicios BPO premium desde Latam",
+    stack: ["Next.js", "Tailwind CSS", "Node.js"],
   },
   {
     id: 3,
@@ -192,6 +194,7 @@ export const proyectosReales = [
     imagen: "/creativehome.png",
     url: "https://creativehome.pe/",
     descripcion: "Ecommerce de muebles y decoración",
+    stack: ["WooCommerce", "WordPress", "PHP", "MySQL"],
   },
   {
     id: 4,
@@ -199,6 +202,7 @@ export const proyectosReales = [
     imagen: "/lomamarilla.png",
     url: "https://edificiolomaamarilla.com/",
     descripcion: "Sitio web inmobiliario",
+    stack: ["WordPress", "PHP", "Elementor"],
   },
   {
     id: 5,
@@ -206,6 +210,7 @@ export const proyectosReales = [
     imagen: "/santed.png",
     url: "https://www.santed.com.pe/",
     descripcion: "Plataforma de servicios médicos",
+    stack: ["React", "Node.js", "PostgreSQL"],
   },
   {
     id: 6,
@@ -213,6 +218,7 @@ export const proyectosReales = [
     imagen: "/dsegunda.png",
     url: "https://dsegunda.com/",
     descripcion: "Ecommerce de productos de segunda mano",
+    stack: ["WooCommerce", "WordPress", "PHP", "MySQL"],
   },
   {
     id: 7,
@@ -220,6 +226,7 @@ export const proyectosReales = [
     imagen: "/hoobank.png",
     url: "https://banco-webmodern.vercel.app/",
     descripcion: "Landing page moderna para banco digital",
+    stack: ["React", "Tailwind CSS", "Vite"],
   },
   {
     id: 8,
@@ -227,6 +234,7 @@ export const proyectosReales = [
     imagen: "/impuestosperu.png",
     url: "https://play.google.com/store/apps/details?id=com.impuestosperu&hl=es_PE",
     descripcion: "Aplicación móvil para cálculo de impuestos",
+    stack: ["React Native", "Firebase", "Android"],
   },
   {
     id: 9,
@@ -234,6 +242,7 @@ export const proyectosReales = [
     imagen: "/557shots_so.png",
     url: "https://bksmoda.com/",
     descripcion: "Ecommerce de moda y accesorios",
+    stack: ["WooCommerce", "WordPress", "Stripe", "PHP"],
   },
   {
     id: 10,
@@ -241,5 +250,6 @@ export const proyectosReales = [
     imagen: "/42shots_so.png",
     url: "https://www.ecoshipperu.com/",
     descripcion: "Landing page para empresa de logística y envíos",
-  }
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+  },
 ];
