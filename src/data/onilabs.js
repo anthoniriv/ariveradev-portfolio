@@ -252,4 +252,20 @@ export const proyectosReales = [
     descripcion: "Landing page para empresa de logística y envíos",
     stack: ["Next.js", "Tailwind CSS", "Vercel"],
   },
+  {
+    id: 11,
+    nombre: "Onigrowth",
+    imagen: "/279shots_so.png",
+    url: "https://www.onigrowth.com/",
+    descripcion: "Plataforma para la venta de sistemas de prompts para optimizar resultados de IA generativa",
+    stack: ["OpenAI", "Claude", "Gemini"],
+  },
+  {
+    id: 12,
+    nombre: "Versus Electoral Perú",
+    imagen: "/387shots_so.png",
+    url: "https://www.versuselectoral.com/",
+    descripcion: "Plataforma para comparar candidatos políticos en elecciones peruanas",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+  },
 ];
