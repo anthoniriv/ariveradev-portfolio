@@ -7,17 +7,16 @@ import { proyectosReales } from "../data/onilabs";
 const CATEGORIAS = [
   { label: "Todos", value: "all" },
   { label: "Ecommerce", value: "ecommerce" },
-  { label: "Corporativo", value: "corporativo" },
-  { label: "App Móvil", value: "app" },
   { label: "Landing", value: "landing" },
+  { label: "App Móvil", value: "app" },
 ];
 
 const categoriasPorProyecto = {
   1: "ecommerce",
-  2: "corporativo",
+  2: "landing",
   3: "ecommerce",
-  4: "corporativo",
-  5: "corporativo",
+  4: "landing",
+  5: "landing",
   6: "ecommerce",
   7: "landing",
   8: "app",
