@@ -23,7 +23,7 @@ export default function FeaturedProjects() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {proyectosReales.slice(0, 3).map((proyecto) => (
+          {proyectosReales.filter((p) => [1, 12, 11].includes(p.id)).map((proyecto) => (
             <article
               key={proyecto.id}
               className="bg-white rounded-2xl border border-border overflow-hidden flex flex-col hover:-translate-y-1 transition-transform duration-base ease-out-expo"
