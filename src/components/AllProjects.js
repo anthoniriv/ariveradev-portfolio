@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { proyectosReales } from "../data/onilabs";
+import ProjectVisual from "./ProjectVisual";
 
 const CATEGORIAS = [
   { label: "Todos", value: "all" },
   { label: "Ecommerce", value: "ecommerce" },
   { label: "Landing", value: "landing" },
   { label: "App Móvil", value: "app" },
+  { label: "Plataformas", value: "platform" },
+  { label: "Juegos", value: "game" },
+  { label: "Próximamente", value: "proximamente", featured: true },
 ];
 
 const categoriasPorProyecto = {
@@ -22,15 +25,27 @@ const categoriasPorProyecto = {
   8: "app",
   9: "ecommerce",
   10: "landing",
+  11: "platform",
+  12: "platform",
+  13: "ecommerce",
+  14: "platform",
+  15: "game",
+  16: "ecommerce",
+  17: "platform",
 };
 
 export default function AllProjects() {
   const [activa, setActiva] = useState("all");
 
-  const proyectosFiltrados =
-    activa === "all"
-      ? proyectosReales
-      : proyectosReales.filter((p) => categoriasPorProyecto[p.id] === activa);
+  const proyectosFiltrados = proyectosReales.filter((proyecto) => {
+    const esProximamente = proyecto.estado === "proximamente";
+
+    if (activa === "proximamente") return esProximamente;
+    if (esProximamente) return false;
+    if (activa === "all") return true;
+
+    return categoriasPorProyecto[proyecto.id] === activa;
+  });
 
   return (
     <section className="w-full bg-background min-h-screen py-20 sm:py-28">
@@ -52,9 +67,28 @@ export default function AllProjects() {
                 onClick={() => setActiva(cat.value)}
                 className="px-4 py-1.5 rounded-md text-sm font-medium transition-colors duration-fast ease-out-expo"
                 style={{
-                  border: activa === cat.value ? "1px solid #2563EB" : "1px solid #E2E8F0",
-                  color: activa === cat.value ? "#2563EB" : "#64748B",
-                  background: activa === cat.value ? "#EFF6FF" : "transparent",
+                  border: cat.featured
+                    ? activa === cat.value
+                      ? "1px solid #DB2777"
+                      : "1px solid #F9A8D4"
+                    : activa === cat.value
+                      ? "1px solid #2563EB"
+                      : "1px solid #E2E8F0",
+                  color: cat.featured
+                    ? activa === cat.value
+                      ? "#FFFFFF"
+                      : "#BE185D"
+                    : activa === cat.value
+                      ? "#2563EB"
+                      : "#64748B",
+                  background: cat.featured
+                    ? activa === cat.value
+                      ? "#DB2777"
+                      : "#FDF2F8"
+                    : activa === cat.value
+                      ? "#EFF6FF"
+                      : "transparent",
+                  boxShadow: cat.featured && activa === cat.value ? "0 8px 18px rgba(219, 39, 119, 0.22)" : "none",
                 }}
               >
                 {cat.label}
@@ -73,12 +107,9 @@ export default function AllProjects() {
             >
               {/* Image */}
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface">
-                <Image
-                  src={proyecto.imagen}
-                  alt={proyecto.nombre}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-slow ease-out-expo hover:scale-[1.03]"
+                <ProjectVisual
+                  proyecto={proyecto}
+                  imageClassName="object-cover transition-transform duration-slow ease-out-expo hover:scale-[1.03]"
                 />
               </div>
 
@@ -102,20 +133,26 @@ export default function AllProjects() {
                   ))}
                 </div>
                 <div>
-                  <a
-                    href={proyecto.url || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-white text-sm font-medium py-2 px-4 rounded-md transition-colors duration-fast ease-out-expo"
-                    style={{ background: "#2563EB" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = "#1E40AF")}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = "#2563EB")}
-                  >
-                    Ver proyecto
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </a>
+                  {proyecto.url && !proyecto.sinSoporte ? (
+                    <a
+                      href={proyecto.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-white text-sm font-medium py-2 px-4 rounded-md transition-colors duration-fast ease-out-expo"
+                      style={{ background: "#2563EB" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = "#1E40AF")}
+                      onMouseLeave={(e) => (e.currentTarget.style.background = "#2563EB")}
+                    >
+                      Ver proyecto
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center text-sm font-medium py-2 px-4 rounded-md text-text-muted bg-surface">
+                      {proyecto.sinSoporte ? "Sin soporte activo" : "Próximamente"}
+                    </span>
+                  )}
                 </div>
               </div>
             </article>

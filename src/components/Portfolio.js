@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import Image from "next/image";
 import { proyectosReales } from "../data/onilabs";
+import ProjectVisual from "./ProjectVisual";
 
 export default function Portfolio() {
   const trackRef = useRef(null);
@@ -184,60 +184,64 @@ export default function Portfolio() {
                 <div className="group rounded-2xl overflow-hidden border border-border bg-background transition-all duration-base ease-out-expo hover:border-primary/40 hover:shadow-xl hover:shadow-primary/8">
                   {/* Image with hover overlay */}
                   <div className="relative aspect-video w-full overflow-hidden">
-                    <Image
-                      src={proyecto.imagen}
-                      alt={proyecto.nombre}
-                      fill
+                    <ProjectVisual
+                      proyecto={proyecto}
                       sizes="(max-width: 768px) 80vw, 780px"
-                      className="object-cover transition-transform duration-slow ease-out-expo group-hover:scale-[1.05]"
+                      imageClassName="object-cover transition-transform duration-slow ease-out-expo group-hover:scale-[1.05]"
+                      showOverlay={Boolean(proyecto.url && !proyecto.sinSoporte)}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-base ease-out-expo flex items-end p-6">
-                      <span className="text-white font-semibold text-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-base ease-out-expo">
-                        Ver proyecto
-                      </span>
-                    </div>
                   </div>
 
                   {/* Info bar */}
                   <div className="bg-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between h-[72px] sm:h-[80px]">
                     <div className="min-w-0 flex-1">
-                      <a
-                        href={proyecto.url || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => {
-                          if (hasDragged.current) e.preventDefault();
-                        }}
-                        className="link-underline inline-block text-base sm:text-xl font-semibold text-text-primary hover:text-primary transition-colors duration-fast ease-out-expo truncate max-w-full"
-                      >
-                        {proyecto.nombre}
-                      </a>
+                      {proyecto.url && !proyecto.sinSoporte ? (
+                        <a
+                          href={proyecto.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => {
+                            if (hasDragged.current) e.preventDefault();
+                          }}
+                          className="link-underline inline-block text-base sm:text-xl font-semibold text-text-primary hover:text-primary transition-colors duration-fast ease-out-expo truncate max-w-full"
+                        >
+                          {proyecto.nombre}
+                        </a>
+                      ) : (
+                        <span className="inline-block text-base sm:text-xl font-semibold text-text-primary truncate max-w-full">
+                          {proyecto.nombre}
+                        </span>
+                      )}
                       <p className="mt-1 text-xs sm:text-sm text-text-secondary truncate">
                         {proyecto.descripcion}
                       </p>
                     </div>
-                    <a
-                      href={proyecto.url || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Abrir ${proyecto.nombre} en nueva pestaña`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (hasDragged.current) e.preventDefault();
-                      }}
-                      className="flex-shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-lg text-text-muted hover:text-primary hover:bg-primary/10 focus-visible:text-primary focus-visible:bg-primary/10 transition-colors duration-fast ease-out-expo"
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        aria-hidden="true"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
+                    <div className="ml-4 flex flex-shrink-0 items-center gap-3">
+                      {proyecto.url && !proyecto.sinSoporte && (
+                        <a
+                          href={proyecto.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Abrir ${proyecto.nombre} en nueva pestaña`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (hasDragged.current) e.preventDefault();
+                          }}
+                          className="w-10 h-10 flex items-center justify-center rounded-lg text-text-muted hover:text-primary hover:bg-primary/10 focus-visible:text-primary focus-visible:bg-primary/10 transition-colors duration-fast ease-out-expo"
+                        >
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
