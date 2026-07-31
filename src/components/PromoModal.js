@@ -97,14 +97,13 @@ export default function PromoModal() {
             className="relative text-3xl sm:text-4xl font-bold tracking-tight mb-1"
             style={{ color: "#FFFFFF" }}
           >
-            Versus{" "}
-            <span style={{ color: "#Fb2c36" }}>Electoral Perú</span>
+            Oni<span style={{ color: "#Fb2c36" }}>store</span>
           </h2>
           <p
             className="relative text-sm font-medium"
             style={{ color: "#A3A3A3" }}
           >
-            Monitoreo electoral con fuentes verificadas
+            Nuestro ecommerce de manga y anime ya está online
           </p>
         </div>
 
@@ -117,14 +116,13 @@ export default function PromoModal() {
             className="text-sm sm:text-base leading-relaxed mb-6"
             style={{ color: "#E5E5E5" }}
           >
-            Monitoreo automático de{" "}
-            <strong style={{ color: "#FFFFFF" }}>36 candidatos</strong>{" "}
-            presidenciales. Acusaciones, denuncias y sentencias con fuentes verificadas de 20 medios.
+            <strong style={{ color: "#FFFFFF" }}>Manga, figuras y coleccionables</strong>{" "}
+            anime con envíos a todo el Perú, recojo en tienda y nuevos drops cada semana.
           </p>
 
           {/* CTA Button */}
           <a
-            href="https://www.versuselectoral.com/"
+            href="https://www.onistore.store/"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center gap-2 w-full px-6 py-3 font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5"
@@ -142,7 +140,7 @@ export default function PromoModal() {
               e.currentTarget.style.boxShadow = "0 4px 14px rgba(251, 44, 54, 0.3)";
             }}
           >
-            Visita Versus Electoral Perú
+            Visita Onistore
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 8h10M9 4l4 4-4 4" />
             </svg>

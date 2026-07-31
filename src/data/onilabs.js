@@ -273,12 +273,12 @@ export const proyectosReales = [
     stack: ["Next.js", "Tailwind CSS", "Vercel"],
   },
   {
-    id: 13,
+    id: 18,
     nombre: "Onistore",
-    imagen: "/onistore.png",
-    descripcion: "Ecommerce a medida con panel administrativo para gestionar productos, pedidos y operación comercial desde un solo lugar.",
-    stack: ["Next.js", "Admin Panel", "Ecommerce"],
-    estado: "proximamente",
+    imagen: "/onistore2.png",
+    url: "https://www.onistore.store/",
+    descripcion: "Ecommerce de manga, figuras y coleccionables anime con envíos a todo el Perú y panel administrativo para gestionar catálogo y pedidos.",
+    stack: ["Next.js", "Ecommerce", "Admin Panel"],
   },
   {
     id: 14,
