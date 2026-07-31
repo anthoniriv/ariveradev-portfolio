@@ -1,4 +1,23 @@
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { Bebas_Neue, DM_Sans } from "@next/font/google";
+
+// Línea gráfica de Onistore
+const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400" });
+const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
+
+const oni = {
+  black: "#12101e",
+  ink: "#1e1a30",
+  surface: "#2a2440",
+  line: "#3a3352",
+  purple: "#7b5ea7",
+  purpleDark: "#5f4783",
+  purpleSoft: "#9b7fc4",
+  gold: "#c4a84a",
+  bone: "#f2ebe0",
+  ash: "#a79fb5",
+};
 
 export default function PromoModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,99 +43,112 @@ export default function PromoModal() {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 touch-none overscroll-none"
+      className={`fixed inset-0 z-[9999] flex items-center justify-center p-4 touch-none overscroll-none ${dmSans.className}`}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in" />
+      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm animate-fade-in" />
 
       {/* Modal */}
       <div
         className="relative w-full max-w-md rounded-2xl overflow-hidden animate-scale-in"
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: "#0A0A0A",
-          border: "1px solid #262626",
+          background: oni.ink,
+          border: `1px solid ${oni.line}`,
           boxShadow: "0 25px 50px rgba(0, 0, 0, 0.8)",
-          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
         }}
       >
         {/* Accent top border */}
         <div
-          className="absolute top-0 left-0 right-0 h-[2px]"
+          className="absolute top-0 left-0 right-0 h-[2px] z-20"
           style={{
-            background: "linear-gradient(90deg, transparent, #Fb2c36, transparent)",
+            background: `linear-gradient(90deg, transparent, ${oni.purpleSoft}, ${oni.gold}, transparent)`,
           }}
         />
 
-        {/* Header */}
-        <div className="relative px-6 pt-8 pb-3 text-center">
-          {/* Close button */}
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-lg transition-all duration-200"
-            style={{
-              background: "transparent",
-              color: "#A3A3A3",
-              border: "1px solid #262626",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "#Fb2c36";
-              e.currentTarget.style.color = "#FFFFFF";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "#262626";
-              e.currentTarget.style.color = "#A3A3A3";
-            }}
-            aria-label="Cerrar"
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M1 1l12 12M13 1L1 13" />
-            </svg>
-          </button>
+        {/* Close button */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-lg transition-all duration-200"
+          style={{
+            background: "rgba(18, 16, 30, 0.6)",
+            color: oni.bone,
+            border: `1px solid ${oni.line}`,
+            backdropFilter: "blur(4px)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = oni.gold;
+            e.currentTarget.style.color = oni.gold;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = oni.line;
+            e.currentTarget.style.color = oni.bone;
+          }}
+          aria-label="Cerrar"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M1 1l12 12M13 1L1 13" />
+          </svg>
+        </button>
 
-          {/* Decorative glow */}
-          <div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-36 rounded-full blur-3xl pointer-events-none"
-            style={{ background: "radial-gradient(circle, rgba(251, 44, 54, 0.12), transparent 70%)" }}
+        {/* Cover */}
+        <div className="relative h-40 sm:h-44 w-full overflow-hidden">
+          <Image
+            src="/onistore2.png"
+            alt="Onistore, tienda de manga y anime"
+            fill
+            sizes="(max-width: 640px) 100vw, 448px"
+            className="object-cover object-center scale-[1.35]"
+            priority
           />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(to bottom, rgba(18,16,30,0.15), ${oni.ink} 95%)`,
+            }}
+          />
+        </div>
 
+        {/* Header */}
+        <div className="relative px-6 -mt-8 text-center">
           {/* Badge */}
           <span
-            className="relative inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider uppercase rounded-full"
+            className="relative inline-block px-3 py-1 mb-3 text-[11px] font-semibold tracking-[0.2em] uppercase rounded-full"
             style={{
-              color: "#E5E5E5",
-              background: "rgba(251, 44, 54, 0.12)",
-              border: "1px solid rgba(251, 44, 54, 0.3)",
+              color: oni.gold,
+              background: "rgba(196, 168, 74, 0.12)",
+              border: `1px solid rgba(196, 168, 74, 0.35)`,
+              backdropFilter: "blur(4px)",
             }}
           >
-            Nuevo
+            Nuevo lanzamiento
           </span>
 
           {/* Title */}
           <h2
-            className="relative text-3xl sm:text-4xl font-bold tracking-tight mb-1"
-            style={{ color: "#FFFFFF" }}
+            className={`relative text-4xl sm:text-5xl tracking-[0.06em] mb-1 ${bebas.className}`}
+            style={{ color: oni.bone }}
           >
-            Oni<span style={{ color: "#Fb2c36" }}>store</span>
+            ONI<span style={{ color: oni.purpleSoft }}>STORE</span>
           </h2>
           <p
             className="relative text-sm font-medium"
-            style={{ color: "#A3A3A3" }}
+            style={{ color: oni.ash }}
           >
             Nuestro ecommerce de manga y anime ya está online
           </p>
         </div>
 
         {/* Divider */}
-        <div className="mx-6" style={{ borderTop: "1px solid #262626" }} />
+        <div className="mx-6 mt-4" style={{ borderTop: `1px solid ${oni.line}` }} />
 
         {/* Body */}
-        <div className="px-6 pt-3 pb-6 text-center">
+        <div className="px-6 pt-4 pb-6 text-center">
           <p
             className="text-sm sm:text-base leading-relaxed mb-6"
-            style={{ color: "#E5E5E5" }}
+            style={{ color: oni.bone }}
           >
-            <strong style={{ color: "#FFFFFF" }}>Manga, figuras y coleccionables</strong>{" "}
+            <strong style={{ color: oni.gold }}>Manga, figuras y coleccionables</strong>{" "}
             anime con envíos a todo el Perú, recojo en tienda y nuevos drops cada semana.
           </p>
 
@@ -127,17 +159,17 @@ export default function PromoModal() {
             rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center gap-2 w-full px-6 py-3 font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5"
             style={{
-              background: "#Fb2c36",
-              color: "#FFFFFF",
-              boxShadow: "0 4px 14px rgba(251, 44, 54, 0.3)",
+              background: `linear-gradient(135deg, ${oni.purple}, ${oni.purpleDark})`,
+              color: oni.bone,
+              boxShadow: "0 4px 14px rgba(123, 94, 167, 0.35)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#dc2626";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(251, 44, 54, 0.45)";
+              e.currentTarget.style.background = `linear-gradient(135deg, ${oni.purpleSoft}, ${oni.purple})`;
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(123, 94, 167, 0.5)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#Fb2c36";
-              e.currentTarget.style.boxShadow = "0 4px 14px rgba(251, 44, 54, 0.3)";
+              e.currentTarget.style.background = `linear-gradient(135deg, ${oni.purple}, ${oni.purpleDark})`;
+              e.currentTarget.style.boxShadow = "0 4px 14px rgba(123, 94, 167, 0.35)";
             }}
           >
             Visita Onistore
@@ -149,9 +181,9 @@ export default function PromoModal() {
           <button
             onClick={() => setIsOpen(false)}
             className="mt-4 text-xs transition-colors duration-150"
-            style={{ color: "#A3A3A3" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#A3A3A3")}
+            style={{ color: oni.ash }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = oni.bone)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = oni.ash)}
           >
             Ahora no, gracias
           </button>
