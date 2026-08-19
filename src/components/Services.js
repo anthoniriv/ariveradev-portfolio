@@ -51,7 +51,7 @@ export default function Services() {
               className="service-card reveal group relative bg-background text-center border border-border rounded-2xl p-6 sm:p-8 transition-all duration-base ease-out-expo hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 hover:-translate-y-0.5"
             >
               {/* Gradient accent top */}
-              <div className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-base ease-out-expo" />
+        
 
               <div className="text-4xl mb-5" aria-hidden="true">
                 {servicio.icono}
