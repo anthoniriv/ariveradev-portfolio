@@ -302,7 +302,7 @@ export const proyectosReales = [
     imagen: "/173shots_so.png",
     descripcion: "Landing y ecommerce para presentar productos industriales de transporte, minería y vehículos marítimos.",
     stack: ["Landing", "Ecommerce", "Catálogo"],
-    estado: ["Next.js", "Tailwind CSS", "Vercel"],
+    url: "https://www.techdsolution.com/",
   },
   {
     id: 17,
