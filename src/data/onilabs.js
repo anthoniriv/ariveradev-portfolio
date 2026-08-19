@@ -299,9 +299,10 @@ export const proyectosReales = [
   {
     id: 16,
     nombre: "TDS",
+    imagen: "/173shots_so.png",
     descripcion: "Landing y ecommerce para presentar productos industriales de transporte, minería y vehículos marítimos.",
     stack: ["Landing", "Ecommerce", "Catálogo"],
-    estado: "proximamente",
+    estado: ["Next.js", "Tailwind CSS", "Vercel"],
   },
   {
     id: 17,
